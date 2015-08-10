@@ -14,6 +14,10 @@
 		26E352851B73E37200477444 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 26E352841B73E37200477444 /* Images.xcassets */; };
 		26E352881B73E37200477444 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 26E352861B73E37200477444 /* LaunchScreen.xib */; };
 		26E352941B73E37200477444 /* PizzaPiBeta4Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = 26E352931B73E37200477444 /* PizzaPiBeta4Tests.m */; };
+		26E3529F1B73E38000477444 /* Pizzeria.m in Sources */ = {isa = PBXBuildFile; fileRef = 26E3529E1B73E38000477444 /* Pizzeria.m */; };
+		26E352A21B73E72E00477444 /* DetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 26E352A11B73E72E00477444 /* DetailViewController.m */; };
+		26E352A81B77A13E00477444 /* PizzaCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 26E352A71B77A13E00477444 /* PizzaCollectionViewCell.m */; };
+		26E352AC1B77A34100477444 /* WebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 26E352AB1B77A34100477444 /* WebViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -40,6 +44,14 @@
 		26E3528D1B73E37200477444 /* PizzaPiBeta4Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PizzaPiBeta4Tests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		26E352921B73E37200477444 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		26E352931B73E37200477444 /* PizzaPiBeta4Tests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PizzaPiBeta4Tests.m; sourceTree = "<group>"; };
+		26E3529D1B73E38000477444 /* Pizzeria.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Pizzeria.h; sourceTree = "<group>"; };
+		26E3529E1B73E38000477444 /* Pizzeria.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Pizzeria.m; sourceTree = "<group>"; };
+		26E352A01B73E72E00477444 /* DetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DetailViewController.h; sourceTree = "<group>"; };
+		26E352A11B73E72E00477444 /* DetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DetailViewController.m; sourceTree = "<group>"; };
+		26E352A61B77A13E00477444 /* PizzaCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PizzaCollectionViewCell.h; sourceTree = "<group>"; };
+		26E352A71B77A13E00477444 /* PizzaCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PizzaCollectionViewCell.m; sourceTree = "<group>"; };
+		26E352AA1B77A34100477444 /* WebViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WebViewController.h; sourceTree = "<group>"; };
+		26E352AB1B77A34100477444 /* WebViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WebViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -83,9 +95,14 @@
 			children = (
 				26E3527B1B73E37200477444 /* AppDelegate.h */,
 				26E3527C1B73E37200477444 /* AppDelegate.m */,
+				26E352AA1B77A34100477444 /* WebViewController.h */,
+				26E352AB1B77A34100477444 /* WebViewController.m */,
+				26E352A01B73E72E00477444 /* DetailViewController.h */,
+				26E352A11B73E72E00477444 /* DetailViewController.m */,
 				26E3527E1B73E37200477444 /* ViewController.h */,
 				26E3527F1B73E37200477444 /* ViewController.m */,
 				26E352811B73E37200477444 /* Main.storyboard */,
+				26E352A91B77A14A00477444 /* Custom Classes and Cells */,
 				26E352841B73E37200477444 /* Images.xcassets */,
 				26E352861B73E37200477444 /* LaunchScreen.xib */,
 				26E352771B73E37200477444 /* Supporting Files */,
@@ -117,6 +134,17 @@
 				26E352921B73E37200477444 /* Info.plist */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		26E352A91B77A14A00477444 /* Custom Classes and Cells */ = {
+			isa = PBXGroup;
+			children = (
+				26E3529D1B73E38000477444 /* Pizzeria.h */,
+				26E3529E1B73E38000477444 /* Pizzeria.m */,
+				26E352A61B77A13E00477444 /* PizzaCollectionViewCell.h */,
+				26E352A71B77A13E00477444 /* PizzaCollectionViewCell.m */,
+			);
+			name = "Custom Classes and Cells";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -219,9 +247,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				26E352A21B73E72E00477444 /* DetailViewController.m in Sources */,
+				26E352AC1B77A34100477444 /* WebViewController.m in Sources */,
+				26E352A81B77A13E00477444 /* PizzaCollectionViewCell.m in Sources */,
 				26E352801B73E37200477444 /* ViewController.m in Sources */,
 				26E3527D1B73E37200477444 /* AppDelegate.m in Sources */,
 				26E3527A1B73E37200477444 /* main.m in Sources */,
+				26E3529F1B73E38000477444 /* Pizzeria.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
