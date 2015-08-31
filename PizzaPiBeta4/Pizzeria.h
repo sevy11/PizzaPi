@@ -18,20 +18,30 @@
 @property CLPlacemark *placemark;
 @property NSString *phoneNumber;
 @property NSURL *url;
+@property NSString *address;
 
 //self init properities
-@property NSString *pizzeriaName;
-@property NSString *sizeAndCost;
-@property UIImage *locationImage;
 @property double intRadius;
 @property double costOfPie;
-@property UIColor *peporoni;
+@property MKRouteStep *eachStep;
+@property NSString *eachStepInstruct;
+
+@property float pricePerInchSq;
 
 
 
--(double)pricePerInch:(double)radius andCost:(double)costOfPie;
 
--(instancetype)initWith:(NSString *)sizeAndCost andSizeInt:(double) intRadius andCost:(double)cost andName:(NSString *)pizzeriaName andImage:(UIImage *)image;
+
+
+
+
+
+
+-(double)percentLgOverSmDigit:(double)costOfOne andTwo:(double)costOfTwo;
+
+-(NSString *)pricePerInch:(double)radius andCost:(double)costOfPie;
+
+-(instancetype)initWith:(double)radius andCost:(double)cost;
 
 
 

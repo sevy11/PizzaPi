@@ -11,36 +11,40 @@
 @implementation Pizzeria
 
 
-
-
-
--(double)pricePerInch:(double)radius andCost:(double)costOfPie    {
+-(NSString *)pricePerInch:(double)radius andCost:(double)costOfPie    {
 
     self.intRadius = radius;
     self.costOfPie = costOfPie;
     float rSqaured = radius * radius;
     float areaOfPie = rSqaured * M_PI;
     float costPer = costOfPie / areaOfPie;
-    return costPer;
-
+    NSString *newP = [NSString stringWithFormat:@"%.3f¢", costPer];
+    return newP;
 }
 
 
 
--(instancetype)initWith:(NSString *)sizeAndCost andSizeInt:(double) intRadius andCost:(double)cost andName:(NSString *)pizzeriaName andImage:(UIImage *)image{
+
+
+
+
+-(double)percentLgOverSmDigit:(double)costOfOne andTwo:(double)costOfTwo{
+    double twoMinusOne  = costOfTwo - costOfOne;
+    double divisorDifference = twoMinusOne / costOfOne;
+    return divisorDifference;
+}
+
+
+-(instancetype)initWith:(double)radius andCost:(double)cost{
 
     self = [super init];
     if (self) {
-        self.intRadius = intRadius;
+        self.intRadius = radius;
         self.costOfPie = cost;
-        self.sizeAndCost = sizeAndCost;
-        self.locationImage = image;
-        self.pizzeriaName = pizzeriaName;
+        
     }
     return self;
 }
-
-
 
 
 @end

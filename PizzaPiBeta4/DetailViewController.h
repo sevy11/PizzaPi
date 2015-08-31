@@ -12,6 +12,8 @@
 
 @property Pizzeria *pizzaPlace;
 @property CLLocation *currentLocation;
+@property CLLocation *destinationLocation;
+@property NSArray *arrayForPizzaPlaces;
 
 @end
 

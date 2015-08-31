@@ -10,8 +10,9 @@
 #import "Pizzeria.h"
 #import "PizzaCollectionViewCell.h"
 #import "WebViewController.h"
+#import "Color.h"
 
-@interface DetailViewController ()
+@interface DetailViewController ()<UIGestureRecognizerDelegate>
 
 @property (weak, nonatomic) IBOutlet UIButton *webButton;
 @property (weak, nonatomic) IBOutlet UILabel *labelOne;
@@ -20,23 +21,25 @@
 @property (weak, nonatomic) IBOutlet UILabel *labelFour;
 @property (weak, nonatomic) IBOutlet UILabel *labelFive;
 @property (weak, nonatomic) IBOutlet UILabel *labelSix;
-
 @property (weak, nonatomic) IBOutlet UILabel *labelSeven;
 @property (weak, nonatomic) IBOutlet UILabel *labelEight;
 @property (weak, nonatomic) IBOutlet UILabel *labelNine;
+@property (weak, nonatomic) IBOutlet UILabel *labelTen;
+@property (weak, nonatomic) IBOutlet UILabel *labelEleven;
+@property (weak, nonatomic) IBOutlet UILabel *labelTwelve;
 
 @property (weak, nonatomic) IBOutlet UIButton *callButton;
 
 
-@property (weak, nonatomic) IBOutlet UITextView *phoneNumberTextView;
 @property NSString *phoneNumberForDialing;
+@property NSString *phoneStrig;
+
 @property (weak, nonatomic) IBOutlet UIImageView *imageView;
+@property (weak, nonatomic) IBOutlet UIImageView *backgorundImage;
 
-@property NSMutableArray *detailedPizzeria;
-
-@property NSMutableArray *domArray;
-@property NSMutableArray *giorArray;
-
+@property (weak, nonatomic) IBOutlet UISegmentedControl *segControl;
+@property (weak, nonatomic) IBOutlet UITextView *textView;
+@property (weak, nonatomic) IBOutlet UIView *midView;
 
 @end
 
@@ -45,161 +48,240 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
 
-    //self.collectionView.delegate = self;
-    //self.collectionView.backgroundColor = [UIColor yellowColor];
 
-    self.callButton.layer.cornerRadius = 4;
-    self.webButton.layer.cornerRadius = 4;
+    self.automaticallyAdjustsScrollViewInsets = NO;
+    self.segControl.selectedSegmentIndex = 0;
+    [self getPathDirectionsWalking:self.currentLocation.coordinate withDestination:self.pizzaPlace.mapItem.placemark.location.coordinate];
 
     self.navigationController.navigationBar.tintColor = [UIColor blackColor];
     self.navigationItem.title = self.pizzaPlace.name;
-    self.navigationController.navigationBar.barTintColor = [UIColor redColor];
+    self.navigationController.navigationBar.barTintColor = [Color pizzaRed];
 
+    self.webButton.layer.cornerRadius = 6;
+    self.webButton.backgroundColor = [Color pizzaRed];
+    self.callButton.backgroundColor = [Color pizzaRed];
+    self.callButton.layer.cornerRadius = 6;
+    [self.callButton sizeToFit];
 
-    //phone number displayed
+    //phone number for dialing
     NSMutableString *oldString = [NSMutableString stringWithString:self.pizzaPlace.phoneNumber];
     NSString *oldestString = [oldString substringFromIndex:2];
     NSMutableString *phoneString = [NSMutableString stringWithString:oldestString];
     self.phoneNumberForDialing = phoneString;
-    [phoneString insertString:@"(" atIndex:0];
-    [phoneString insertString:@")" atIndex:4];
-    [phoneString insertString:@" " atIndex:5];
-    [phoneString insertString:@"-" atIndex:9];
-    self.pizzaPlace.phoneNumber = phoneString;
-    self.phoneNumberTextView.text = phoneString;
+    NSLog(@"phone number for dialing: %@", self.phoneNumberForDialing);
 
-    NSString *newString = [NSString stringWithFormat:@"%@", self.pizzaPlace.placemark];
-    self.labelOne.text = newString;
-
-
-    Pizzeria *lou1 = [[Pizzeria alloc]initWith:@"small $9.50" andSizeInt:6 andCost:9.50 andName:@"Lou Malnati's" andImage:[UIImage imageNamed:@"lousImage"]];
-    Pizzeria *lou2 = [[Pizzeria alloc]initWith:@"medium $12.50" andSizeInt:7 andCost:12.50 andName:@"Lou Malnati's" andImage:[UIImage imageNamed:@"lousImage"]];
-    Pizzeria *lou3 = [[Pizzeria alloc]initWith:@"large $15.50" andSizeInt:8 andCost:15.50 andName:@"Lou Malnati's" andImage:[UIImage imageNamed:@"lousImage"]];
-
-    Pizzeria *dom1 = [[Pizzeria alloc]initWith:@"small $6.99" andSizeInt:5 andCost:6.99 andName:@"Domino's" andImage:[UIImage imageNamed:@"dominosImage"]];
-    Pizzeria *dom2 = [[Pizzeria alloc]initWith:@"medium $8.99" andSizeInt:6 andCost:8.99 andName:@"Domino's" andImage:[UIImage imageNamed:@"dominosImage"]];
-    Pizzeria *dom3 = [[Pizzeria alloc]initWith:@"large $10.99" andSizeInt:7 andCost:10.99 andName:@"Domino's" andImage:[UIImage imageNamed:@"dominosImage"]];
-    Pizzeria *dom4 = [[Pizzeria alloc]initWith:@"extra large $12.99" andSizeInt:8 andCost:12.99 andName:@"Domino's" andImage:[UIImage imageNamed:@"dominosImage"]];
-
-    Pizzeria *gior1 = [[Pizzeria alloc]initWith:@"small $15.50" andSizeInt:5 andCost:15.50 andName:@"Giordano's" andImage:[UIImage imageNamed:@"giodanosImage"]];
-    Pizzeria *gior2 = [[Pizzeria alloc]initWith:@"medium $20.25" andSizeInt:6 andCost:20.25 andName:@"Giordano's" andImage:[UIImage imageNamed:@"giodanosImage"]];
-    Pizzeria *gior3 = [[Pizzeria alloc]initWith:@"large $25.00" andSizeInt:7 andCost:15.50 andName:@"Giordano's" andImage:[UIImage imageNamed:@"giodanosImage"]];
+//      for display
+//    [phoneString insertString:@"Call:" atIndex:0];
+//    [phoneString insertString:@"(" atIndex:6];
+//    [phoneString insertString:@")" atIndex:10];
+//    [phoneString insertString:@" " atIndex:11];
+//    [phoneString insertString:@"-" atIndex:14];
+//    self.pizzaPlace.phoneNumber = phoneString;
+//    self.phoneStrig = phoneString;
 
 
-    self.detailedPizzeria = [NSMutableArray arrayWithObjects:lou1, lou2, lou3, nil];
 
-    self.domArray = [NSMutableArray arrayWithObjects:dom1, dom2, dom3, dom4, nil];
-    self.giorArray = [NSMutableArray arrayWithObjects:gior1, gior2, gior3, nil];
+    //Lou's
+    Pizzeria *lou1 = [[Pizzeria alloc]initWith: 6 andCost:9.50];
+    Pizzeria *lou2 = [[Pizzeria alloc]initWith: 7 andCost:12.50];
+    Pizzeria *lou3 = [[Pizzeria alloc]initWith: 8 andCost:15.50];
+    //Dominos
+    Pizzeria *dom1 = [[Pizzeria alloc]initWith: 5 andCost:6.99];
+    Pizzeria *dom2 = [[Pizzeria alloc]initWith: 6 andCost:8.99];
+    Pizzeria *dom3 = [[Pizzeria alloc]initWith:7 andCost:10.99];
+//    Pizzeria *dom4 = [[Pizzeria alloc]initWith:@"extra large $12.99" andSizeInt:8 andCost:12.99 andName:@"Domino's"];
+    //Giordano's
+    Pizzeria *gior1 = [[Pizzeria alloc]initWith: 5 andCost:15.50];
+    Pizzeria *gior2 = [[Pizzeria alloc]initWith: 6 andCost:20.25];
+    Pizzeria *gior3 = [[Pizzeria alloc]initWith: 7 andCost:15.50];
 
+    Pizzeria *piece1 = [[Pizzeria alloc]initWith:5 andCost:12.49];
+    Pizzeria *piece2 = [[Pizzeria alloc]initWith:6 andCost:15.49];
+    Pizzeria *piece3 = [[Pizzeria alloc]initWith:7 andCost:18.49];
+
+    Pizzeria *gino1 = [[Pizzeria alloc]initWith:5 andCost:24.0];
+    Pizzeria *gino2 = [[Pizzeria alloc]initWith:6 andCost:30.0];
+    Pizzeria *gino3 = [[Pizzeria alloc]initWith:7 andCost:34.0];
 
     if ([self.pizzaPlace.name containsString:@"Lou"]) {
 
-        double rsquared = lou1.intRadius * lou1.intRadius;
-        double rsquared2 = lou2.intRadius * lou2.intRadius;
-        double rsquared3 = lou3.intRadius * lou3.intRadius;
+        self.imageView.image = [UIImage imageNamed:@"slide-pull-1"];
+        self.labelTwo.text = [NSString stringWithFormat:@"$%0.2f", lou1.costOfPie];
+        self.labelThree.text = [lou1 pricePerInch:lou1.intRadius andCost:lou1.costOfPie];
 
-        double areaOfZa = M_PI * rsquared;
-        double areaOfZa2 = M_PI *rsquared2;
-        double areaOfZa3 = M_PI *rsquared3;
+        self.labelFive.text = [NSString stringWithFormat:@"$%0.2f", lou2.costOfPie];
+        self.labelSix.text = [lou2 pricePerInch:lou2.intRadius andCost:lou2.costOfPie];
+        double quotient = [lou2 percentLgOverSmDigit:lou1.costOfPie andTwo:lou2.costOfPie];
+        self.labelSeven.text = [NSString stringWithFormat:@"%0.1f%% > sm", quotient * 100];
 
-        double pricePer = lou1.costOfPie / areaOfZa;
-        double pricePer2 = lou2.costOfPie / areaOfZa2;
-        double pricePer3 = lou3.costOfPie / areaOfZa3;
+        self.labelNine.text = [NSString stringWithFormat:@"$%0.2f", lou3.costOfPie];
+        self.labelTen.text = [lou3 pricePerInch:lou3.intRadius andCost:lou3.costOfPie];
+        double quotient1 = [lou3 percentLgOverSmDigit:lou2.costOfPie andTwo:lou3.costOfPie];
+        double quotient2 = [lou3 percentLgOverSmDigit:lou1.costOfPie andTwo:lou3.costOfPie];
+        self.labelEleven.text = [NSString stringWithFormat:@"%0.1f%% > med", quotient1 * 100];
+        self.labelTwelve.text = [NSString stringWithFormat:@"%0.1f%% > sm", quotient2 * 100];
+
+    } else if ([self.pizzaPlace.name containsString:@"Domino's"])    {
+
+        self.imageView.image = [UIImage imageNamed:@"dominosImage"];
+        self.labelTwo.text = [NSString stringWithFormat:@"$%0.2f", dom1.costOfPie];
+        self.labelThree.text = [dom1 pricePerInch:lou1.intRadius andCost:dom1.costOfPie];
+
+        self.labelFive.text = [NSString stringWithFormat:@"$%0.2f", dom2.costOfPie];
+        self.labelSix.text = [dom2 pricePerInch:lou2.intRadius andCost:dom2.costOfPie];
+        double quotient = [dom2 percentLgOverSmDigit:dom1.costOfPie andTwo:dom2.costOfPie];
+        self.labelSeven.text = [NSString stringWithFormat:@"%0.1f%% > sm", quotient * 100];
+
+        self.labelNine.text = [NSString stringWithFormat:@"$%0.2f", dom3.costOfPie];
+        self.labelTen.text = [dom3 pricePerInch:dom3.intRadius andCost:dom3.costOfPie];
+        double quotient1 = [dom3 percentLgOverSmDigit:dom2.costOfPie andTwo:dom3.costOfPie];
+        double quotient2 = [lou3 percentLgOverSmDigit:lou1.costOfPie andTwo:lou3.costOfPie];
+        self.labelEleven.text = [NSString stringWithFormat:@"%0.1f%% > med", quotient1 * 100];
+        self.labelTwelve.text = [NSString stringWithFormat:@"%0.1f%% > sm", quotient2 * 100];
+
+    }else if ([self.pizzaPlace.name containsString:@"Giodano's"])   {
+
+        self.imageView.image = [UIImage imageNamed:@"giordanosImage"];
+        self.labelTwo.text = [NSString stringWithFormat:@"$%0.2f", gior1.costOfPie];
+        self.labelThree.text = [gior1 pricePerInch:gior1.intRadius andCost:gior1.costOfPie];
+
+        self.labelFive.text = [NSString stringWithFormat:@"$%0.2f", gior1.costOfPie];
+        self.labelSix.text = [gior2 pricePerInch:gior2.intRadius andCost:gior2.costOfPie];
+        double quotient = [gior2 percentLgOverSmDigit:gior1.costOfPie andTwo:gior2.costOfPie];
+        self.labelSeven.text = [NSString stringWithFormat:@"%0.1f%% > sm", quotient * 100];
+
+        self.labelNine.text = [NSString stringWithFormat:@"$%0.2f", gior3.costOfPie];
+        self.labelTen.text = [gior3 pricePerInch:gior3.intRadius andCost:gior3.costOfPie];
+        double quotient1 = [gior3 percentLgOverSmDigit:gior2.costOfPie andTwo:gior3.costOfPie];
+        double quotient2 = [gior3 percentLgOverSmDigit:gior1.costOfPie andTwo:gior3.costOfPie];
+        self.labelEleven.text = [NSString stringWithFormat:@"%0.1f%% > med", quotient1 * 100];
+        self.labelTwelve.text = [NSString stringWithFormat:@"%0.1f%% > sm", quotient2 * 100];
+
+    }else if([self.pizzaPlace.address containsString:@"500 LaSalle"])   {
+
+        self.imageView.image = [UIImage imageNamed:@"ginosImage"];
+        self.labelTwo.text = [NSString stringWithFormat:@"$%0.2f", gino1.costOfPie];
+        self.labelThree.text = [gino1 pricePerInch:gior1.intRadius andCost:gior1.costOfPie];
+
+        self.labelFive.text = [NSString stringWithFormat:@"$%0.2f", gino1.costOfPie];
+        self.labelSix.text = [gino1 pricePerInch:gino1.intRadius andCost:gino1.costOfPie];
+        double quotient = [gino2 percentLgOverSmDigit:gino1.costOfPie andTwo:gino2.costOfPie];
+        self.labelSeven.text = [NSString stringWithFormat:@"%0.1f%% > sm", quotient * 100];
+
+        self.labelNine.text = [NSString stringWithFormat:@"$%0.2f", gino3.costOfPie];
+        self.labelTen.text = [gino3 pricePerInch:gino3.intRadius andCost:gino3.costOfPie];
+        double quotient1 = [gino3 percentLgOverSmDigit:gino2.costOfPie andTwo:gino3.costOfPie];
+        double quotient2 = [gino3 percentLgOverSmDigit:gino1.costOfPie andTwo:gino3.costOfPie];
+        self.labelEleven.text = [NSString stringWithFormat:@"%0.1f%% > med", quotient1 * 100];
+        self.labelTwelve.text = [NSString stringWithFormat:@"%0.1f%% > sm", quotient2 * 100];
+
+    } else if ([self.pizzaPlace.name containsString:@"Piece"])  {
+
+        self.imageView.image = [UIImage imageNamed:@"pieceClam"];
+        self.labelTwo.text = [NSString stringWithFormat:@"$%0.2f", piece1.costOfPie];
+        self.labelThree.text = [piece1 pricePerInch:piece1.intRadius andCost:piece1.costOfPie];
+
+        self.labelFive.text = [NSString stringWithFormat:@"$%0.2f", piece1.costOfPie];
+        self.labelSix.text = [piece1 pricePerInch:piece1.intRadius andCost:piece1.costOfPie];
+        double quotient = [piece2 percentLgOverSmDigit:piece1.costOfPie andTwo:piece2.costOfPie];
+        self.labelSeven.text = [NSString stringWithFormat:@"%0.1f%% > sm", quotient * 100];
+
+        self.labelNine.text = [NSString stringWithFormat:@"$%0.2f", gino3.costOfPie];
+        self.labelTen.text = [piece3 pricePerInch:piece3.intRadius andCost:piece3.costOfPie];
+        double quotient1 = [piece3 percentLgOverSmDigit:piece2.costOfPie andTwo:piece3.costOfPie];
+        double quotient2 = [piece3 percentLgOverSmDigit:piece1.costOfPie andTwo:piece3.costOfPie];
+        self.labelEleven.text = [NSString stringWithFormat:@"%0.1f%% > med", quotient1 * 100];
+        self.labelTwelve.text = [NSString stringWithFormat:@"%0.1f%% > sm", quotient2 * 100];
+
+    } else{
+
+        UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"No Information" message:@"PizzaPi is working hard to add this Pizzeria" preferredStyle:UIAlertControllerStyleAlert];
+
+        UIAlertAction *action = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
+
+        }];
+        [self presentViewController:alert animated:YES completion:nil];
+        [alert addAction:action];
+    }
+
+    //night/day
+    NSDateComponents *component = [[NSCalendar currentCalendar] components:(NSCalendarUnitMonth | NSCalendarUnitHour) fromDate:[NSDate date]];
+    NSInteger hours = [component hour];
+    NSInteger month = [component month];
+    NSInteger eveningHour = 0;
+
+//    NSLog(@"\n\nHOUR IS: %ld", (long)hours);
+//    NSLog(@"MONTH IS: %ld", (long)month);
+
+    switch (month) {
+        case 12: case 1: case 2:
+            // winder shorter days: December, January, February.
+            eveningHour = 16;
+            break;
+        case 3: case 4: case 5:
+            // Spring longer day March, April, May.
+            eveningHour = 17;
+            break;
+        case 6: case 7: case 8:
+            // summer longest days June, July, August.
+            eveningHour = 20;
+            break;
+        case 9: case 10: case 11:
+            // fall shorter days September, October, November.
+            eveningHour = 17;
+            break;
+        default: break;
+    }
+
+    if ((hours >= 0) && (hours < 12)) {
+        // Morning...
+        // Display normal sun icon.
+        NSLog(@"Morning");
+        self.backgorundImage.image = [UIImage imageNamed:@"large_chicago_on..ect_day"];
+    }
+
+    else if ((hours >= 12) && (hours < eveningHour)) {
+        // Afternoon...
+        // Display normal sun icon.
+        NSLog(@"Afternoon");
+        self.backgorundImage.image = [UIImage imageNamed:@"Chicago_Theater_-_day"];
+    }
+    
+    else if ((hours >= eveningHour) && (hours <= 24)) {
+        // Evening/Night...
+        // Display moon icon.
+        NSLog(@"Evening");
+        self.backgorundImage.image = [UIImage imageNamed:@"Dark-Chicago"];
+        self.midView.backgroundColor = [UIColor blackColor];
+        self.midView.alpha = .5;
+
+        UIFont *font = [UIFont boldSystemFontOfSize:12.0f];
+        NSDictionary *attributes = [NSDictionary dictionaryWithObject:font
+                                                               forKey:NSFontAttributeName];
+        [self.segControl setTitleTextAttributes:attributes
+                                        forState:UIControlStateNormal];
+        self.segControl.tintColor = [UIColor whiteColor];
 
 
-        //small
-        self.imageView.image = lou1.locationImage;
-        self.labelOne.text = lou1.sizeAndCost;
-        NSString *newP = [NSString stringWithFormat:@"$%0.3f", pricePer];
-        NSString *pricePerString = [NSString stringWithFormat:@"price per square inch: %@", newP];
-        self.labelTwo.text = pricePerString;
+        self.labelOne.textColor = [UIColor whiteColor];
+        self.labelTwo.textColor = [UIColor whiteColor];
+        self.labelThree.textColor = [UIColor whiteColor];
+        self.labelFour.textColor = [UIColor whiteColor];
+        self.labelFive.textColor = [UIColor whiteColor];
+        self.labelSix.textColor = [UIColor whiteColor];
+        self.labelSeven.textColor = [UIColor whiteColor];
+        self.labelEight.textColor = [UIColor whiteColor];
+        self.labelNine.textColor = [UIColor whiteColor];
+        self.labelTen.textColor = [UIColor whiteColor];
+        self.labelEleven.textColor = [UIColor whiteColor];
+        self.labelTwelve.textColor = [UIColor whiteColor];
 
-        //percentage vs. larger size calculations
-        double twoMinusOne = pricePer - pricePer2;
-        double threeMinusTwo = pricePer2 - pricePer3;
-        double threeMinusOne = pricePer - pricePer3;
-
-        double percentage2Vs1 = twoMinusOne / pricePer;
-        double percentage3Vs2 = threeMinusTwo / pricePer2;
-        double percentage3Vs1 = threeMinusOne / pricePer;
-
-        NSString *stringy = [NSString stringWithFormat:@"%.1f%% better value than a small", percentage2Vs1 *100];
-        NSString *stringy2 = [NSString stringWithFormat:@"%.1f%% better value than a medium", percentage3Vs2 *100];
-        NSString *stringy3 = [NSString stringWithFormat:@"%.1f%% better value than a small", percentage3Vs1 *100];
-
-        //medium
-        self.labelFour.text = lou2.sizeAndCost;
-        NSString *newP2 = [NSString stringWithFormat:@"$%0.3f", pricePer2];
-        NSString *pricePerString2 = [NSString stringWithFormat:@"price per square inch: %@", newP2];
-        self.labelFive.text = pricePerString2;
-        self.labelSix.text = stringy;
-
-        //large
-        self.labelSeven.text = lou3.sizeAndCost;
-        NSString *newP3 = [NSString stringWithFormat:@"$%0.3f", pricePer3];
-        NSString *pricePerString3 = [NSString stringWithFormat:@"price per square inch: %@", newP3];
-        self.labelEight.text = pricePerString3;
-        self.labelNine.text = stringy2;
-        self.labelThree.text = stringy3;
-
-    } else if ([self.pizzaPlace.name containsString:@"Giordano"])    {
-
-            double rsquared = gior1.intRadius * gior1.intRadius;
-            double rsquared2 = gior2.intRadius * gior2.intRadius;
-            double rsquared3 = gior3.intRadius * gior3.intRadius;
-
-            double areaOfZa = M_PI * rsquared;
-            double areaOfZa2 = M_PI *rsquared2;
-            double areaOfZa3 = M_PI *rsquared3;
-
-            double pricePer = gior1.costOfPie / areaOfZa;
-            double pricePer2 = gior2.costOfPie / areaOfZa2;
-            double pricePer3 = gior3.costOfPie / areaOfZa3;
-
-            //small
-            self.imageView.image = gior1.locationImage;
-            self.labelOne.text = gior1.sizeAndCost;
-            NSString *newP = [NSString stringWithFormat:@"$%0.3f", pricePer];
-            NSString *pricePerString = [NSString stringWithFormat:@"price per square inch: %@", newP];
-            self.labelTwo.text = pricePerString;
-
-            //percentage vs. larger size calculations
-            double twoMinusOne = pricePer - pricePer2;
-            double threeMinusTwo = pricePer2 - pricePer3;
-            double threeMinusOne = pricePer - pricePer3;
-
-            double percentage2Vs1 = twoMinusOne / pricePer;
-            double percentage3Vs2 = threeMinusTwo / pricePer2;
-            double percentage3Vs1 = threeMinusOne / pricePer;
-
-            NSString *stringy = [NSString stringWithFormat:@"%.1f%% better value than a small", percentage2Vs1 *100];
-            NSString *stringy2 = [NSString stringWithFormat:@"%.1f%% better value than a medium", percentage3Vs2 *100];
-            NSString *stringy3 = [NSString stringWithFormat:@"%.1f%% better value than a small", percentage3Vs1 *100];
-
-            //medium
-            self.labelFour.text = gior2.sizeAndCost;
-            NSString *newP2 = [NSString stringWithFormat:@"$%0.3f", pricePer2];
-            NSString *pricePerString2 = [NSString stringWithFormat:@"price per square inch: %@", newP2];
-            self.labelFive.text = pricePerString2;
-            self.labelSix.text = stringy;
-
-            //large
-            self.labelSeven.text = gior3.sizeAndCost;
-            NSString *newP3 = [NSString stringWithFormat:@"$%0.3f", pricePer3];
-            NSString *pricePerString3 = [NSString stringWithFormat:@"price per square inch: %@", newP3];
-            self.labelEight.text = pricePerString3;
-            self.labelNine.text = stringy2;
-            self.labelThree.text = stringy3;
-        }
-
+    }
 }
-- (IBAction)onCallButtonTapped:(UIButton *)sender {
-    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:self.phoneNumberForDialing]];
 
 
-}
 
-
+#pragma mark -- Segue Methods
 
 -(BOOL)shouldPerformSegueWithIdentifier:(NSString *)identifier sender:(id)sender{
     if (self.pizzaPlace.url) {
@@ -213,40 +295,120 @@
     WebViewController *wvc = segue.destinationViewController;
     wvc.url = self.pizzaPlace.url;
     wvc.pizzeria = self.pizzaPlace.name;
-    NSLog(@"%@", wvc.pizzeria);
+}
+
+
+- (IBAction)segmentControlChange:(UISegmentedControl *)sender {
+
+    [self.textView reloadInputViews];
+
+    if (self.segControl.selectedSegmentIndex == 1) {
+        [self getPathDirectionsBiking:self.currentLocation.coordinate withDestination:self.pizzaPlace.mapItem.placemark.location.coordinate];
+
+    }else if(self.segControl.selectedSegmentIndex == 2){
+        [self getPathDirectionsDriving:self.currentLocation.coordinate withDestination:self.pizzaPlace.mapItem.placemark.location.coordinate];
+    }
+}
+
+- (IBAction)onCallButtonTapped:(UIButton *)sender {
+
+    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:self.phoneNumberForDialing]];
+    //[self.callButton setTitle:self.phoneStrig forState:UIControlStateNormal];
+}
+
+
+
+#pragma mark -- helper methods
+
+-(void)getPathDirectionsWalking:(CLLocationCoordinate2D)source withDestination:(CLLocationCoordinate2D)destination {
+    //source and destination objects init
+    MKPlacemark *placemarkSource = [[MKPlacemark alloc]initWithCoordinate:source addressDictionary:nil];
+    MKMapItem *mapItemSource = [[MKMapItem alloc]initWithPlacemark:placemarkSource];
+    MKPlacemark *placemarkDestination = [[MKPlacemark alloc]initWithCoordinate:destination addressDictionary:nil];
+    MKMapItem *mapItemDestination = [[MKMapItem alloc]initWithPlacemark:placemarkDestination];
+
+    MKDirectionsRequest *request = [[MKDirectionsRequest alloc]init];
+    [request setSource:mapItemSource];
+    [request setDestination:mapItemDestination];
+    [request setTransportType:MKDirectionsTransportTypeWalking];
+    request.requestsAlternateRoutes = NO;
+
+    MKDirections *directions = [[MKDirections alloc]initWithRequest:request];
+    [directions calculateDirectionsWithCompletionHandler:^(MKDirectionsResponse *response, NSError *error) {
+
+        MKRoute *route = response.routes.lastObject;
+        NSString *allSteps = [NSString new];
+
+        for (MKRouteStep *eachStep in route.steps) {
+            NSString *newStep = eachStep.instructions;
+            allSteps = [allSteps stringByAppendingString:newStep];
+            allSteps = [allSteps stringByAppendingString:@"\n\n"];
+        }
+        self.textView.text = allSteps;
+    }];
+}
+
+-(void)getPathDirectionsBiking:(CLLocationCoordinate2D)source withDestination:(CLLocationCoordinate2D)destination {
+    //source and destination objects init
+    MKPlacemark *placemarkSource = [[MKPlacemark alloc]initWithCoordinate:source addressDictionary:nil];
+    MKMapItem *mapItemSource = [[MKMapItem alloc]initWithPlacemark:placemarkSource];
+    MKPlacemark *placemarkDestination = [[MKPlacemark alloc]initWithCoordinate:destination addressDictionary:nil];
+    MKMapItem *mapItemDestination = [[MKMapItem alloc]initWithPlacemark:placemarkDestination];
+
+    MKDirectionsRequest *request = [[MKDirectionsRequest alloc]init];
+    [request setSource:mapItemSource];
+    [request setDestination:mapItemDestination];
+    [request setTransportType:MKDirectionsTransportTypeAny];
+    request.requestsAlternateRoutes = NO;
+
+    MKDirections *directions = [[MKDirections alloc]initWithRequest:request];
+    [directions calculateDirectionsWithCompletionHandler:^(MKDirectionsResponse *response, NSError *error) {
+
+        MKRoute *route = response.routes.lastObject;
+        NSString *allSteps = [NSString new];
+
+        for (MKRouteStep *eachStep in route.steps) {
+            NSString *newStep = eachStep.instructions;
+            allSteps = [allSteps stringByAppendingString:newStep];
+            allSteps = [allSteps stringByAppendingString:@"\n\n"];
+        }
+        self.textView.text = allSteps;
+    }];
+}
+
+
+-(void)getPathDirectionsDriving:(CLLocationCoordinate2D)source withDestination:(CLLocationCoordinate2D)destination {
+    //source and destination objects init
+    MKPlacemark *placemarkSource = [[MKPlacemark alloc]initWithCoordinate:source addressDictionary:nil];
+    MKMapItem *mapItemSource = [[MKMapItem alloc]initWithPlacemark:placemarkSource];
+    MKPlacemark *placemarkDestination = [[MKPlacemark alloc]initWithCoordinate:destination addressDictionary:nil];
+    MKMapItem *mapItemDestination = [[MKMapItem alloc]initWithPlacemark:placemarkDestination];
+
+    MKDirectionsRequest *request = [[MKDirectionsRequest alloc]init];
+    [request setSource:mapItemSource];
+    [request setDestination:mapItemDestination];
+    [request setTransportType:MKDirectionsTransportTypeAutomobile];
+    request.requestsAlternateRoutes = NO;
+
+    MKDirections *directions = [[MKDirections alloc]initWithRequest:request];
+    [directions calculateDirectionsWithCompletionHandler:^(MKDirectionsResponse *response, NSError *error) {
+
+        MKRoute *route = response.routes.lastObject;
+        NSString *allSteps = [NSString new];
+
+        for (MKRouteStep *eachStep in route.steps) {
+            NSString *newStep = eachStep.instructions;
+            allSteps = [allSteps stringByAppendingString:newStep];
+            allSteps = [allSteps stringByAppendingString:@"\n\n"];
+        }
+        self.textView.text = allSteps;
+    }];
 }
 
 
 
 
 @end
-
-
-
-
-
-
-
-
-
-
-
-//-(NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView{
-//    return 1;
-//}
-//
-//-(NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section{
-//    return self.detailedPizzeria.count;
-//}
-//
-//-(UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath{
-//
-//    PizzaCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"Cell" forIndexPath:indexPath];
-//    cell.cellLabelOne.text = self.detailedPizzeria[indexPath.row];
-//
-//    return cell;
-//}
-
 
 
 

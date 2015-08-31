@@ -7,10 +7,12 @@
 //
 
 #import "WebViewController.h"
+#import "Color.h"
 
 @interface WebViewController ()<UIWebViewDelegate>
 
 @property (weak, nonatomic) IBOutlet UIWebView *webView;
+@property (weak, nonatomic) IBOutlet UIView *bottomView;
 
 @end
 
@@ -22,11 +24,11 @@
     NSURLRequest *request = [NSURLRequest requestWithURL:self.url];
     [self.webView loadRequest:request];
 
-
     self.navigationController.navigationBar.tintColor = [UIColor blackColor];
     self.navigationItem.title = self.pizzeria;
-    self.navigationController.navigationBar.barTintColor = [UIColor redColor];
+    self.navigationController.navigationBar.barTintColor = [Color pizzaRed];
 
+    self.bottomView.backgroundColor = [Color pizzaRed];
 }
 - (IBAction)onBackButtonTapped:(id)sender {
     [self.webView goBack];
@@ -40,5 +42,7 @@
 - (IBAction)onRefreshTapped:(id)sender {
     [self.webView reload];
 }
+
+
 
 @end

@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		269BAD581B8E5CB3009429D2 /* Color.m in Sources */ = {isa = PBXBuildFile; fileRef = 269BAD571B8E5CB3009429D2 /* Color.m */; };
 		26E3527A1B73E37200477444 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 26E352791B73E37200477444 /* main.m */; };
 		26E3527D1B73E37200477444 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 26E3527C1B73E37200477444 /* AppDelegate.m */; };
 		26E352801B73E37200477444 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 26E3527F1B73E37200477444 /* ViewController.m */; };
@@ -18,6 +19,8 @@
 		26E352A21B73E72E00477444 /* DetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 26E352A11B73E72E00477444 /* DetailViewController.m */; };
 		26E352A81B77A13E00477444 /* PizzaCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 26E352A71B77A13E00477444 /* PizzaCollectionViewCell.m */; };
 		26E352AC1B77A34100477444 /* WebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 26E352AB1B77A34100477444 /* WebViewController.m */; };
+		26E352ED1B7E95AE00477444 /* SignInViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 26E352EC1B7E95AE00477444 /* SignInViewController.m */; };
+		26F118E61B87ADEE00932D97 /* AddressBookUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 26F118E51B87ADEE00932D97 /* AddressBookUI.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -31,6 +34,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		269BAD561B8E5CB3009429D2 /* Color.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Color.h; sourceTree = "<group>"; };
+		269BAD571B8E5CB3009429D2 /* Color.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Color.m; sourceTree = "<group>"; };
 		26E352741B73E37200477444 /* PizzaPiBeta4.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PizzaPiBeta4.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		26E352781B73E37200477444 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		26E352791B73E37200477444 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -52,6 +57,9 @@
 		26E352A71B77A13E00477444 /* PizzaCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PizzaCollectionViewCell.m; sourceTree = "<group>"; };
 		26E352AA1B77A34100477444 /* WebViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WebViewController.h; sourceTree = "<group>"; };
 		26E352AB1B77A34100477444 /* WebViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WebViewController.m; sourceTree = "<group>"; };
+		26E352EB1B7E95AE00477444 /* SignInViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SignInViewController.h; sourceTree = "<group>"; };
+		26E352EC1B7E95AE00477444 /* SignInViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SignInViewController.m; sourceTree = "<group>"; };
+		26F118E51B87ADEE00932D97 /* AddressBookUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AddressBookUI.framework; path = System/Library/Frameworks/AddressBookUI.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -59,6 +67,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				26F118E61B87ADEE00932D97 /* AddressBookUI.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -75,6 +84,7 @@
 		26E3526B1B73E37200477444 = {
 			isa = PBXGroup;
 			children = (
+				26F118E51B87ADEE00932D97 /* AddressBookUI.framework */,
 				26E352761B73E37200477444 /* PizzaPiBeta4 */,
 				26E352901B73E37200477444 /* PizzaPiBeta4Tests */,
 				26E352751B73E37200477444 /* Products */,
@@ -99,6 +109,8 @@
 				26E352AB1B77A34100477444 /* WebViewController.m */,
 				26E352A01B73E72E00477444 /* DetailViewController.h */,
 				26E352A11B73E72E00477444 /* DetailViewController.m */,
+				26E352EB1B7E95AE00477444 /* SignInViewController.h */,
+				26E352EC1B7E95AE00477444 /* SignInViewController.m */,
 				26E3527E1B73E37200477444 /* ViewController.h */,
 				26E3527F1B73E37200477444 /* ViewController.m */,
 				26E352811B73E37200477444 /* Main.storyboard */,
@@ -143,6 +155,8 @@
 				26E3529E1B73E38000477444 /* Pizzeria.m */,
 				26E352A61B77A13E00477444 /* PizzaCollectionViewCell.h */,
 				26E352A71B77A13E00477444 /* PizzaCollectionViewCell.m */,
+				269BAD561B8E5CB3009429D2 /* Color.h */,
+				269BAD571B8E5CB3009429D2 /* Color.m */,
 			);
 			name = "Custom Classes and Cells";
 			sourceTree = "<group>";
@@ -247,8 +261,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				26E352ED1B7E95AE00477444 /* SignInViewController.m in Sources */,
 				26E352A21B73E72E00477444 /* DetailViewController.m in Sources */,
 				26E352AC1B77A34100477444 /* WebViewController.m in Sources */,
+				269BAD581B8E5CB3009429D2 /* Color.m in Sources */,
 				26E352A81B77A13E00477444 /* PizzaCollectionViewCell.m in Sources */,
 				26E352801B73E37200477444 /* ViewController.m in Sources */,
 				26E3527D1B73E37200477444 /* AppDelegate.m in Sources */,
@@ -448,6 +464,7 @@
 				26E352991B73E37200477444 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		26E3529A1B73E37200477444 /* Build configuration list for PBXNativeTarget "PizzaPiBeta4Tests" */ = {
 			isa = XCConfigurationList;
@@ -456,6 +473,7 @@
 				26E3529C1B73E37200477444 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

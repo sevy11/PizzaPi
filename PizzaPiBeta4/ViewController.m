@@ -11,14 +11,18 @@
 #import <CoreLocation/CoreLocation.h>
 #import "Pizzeria.h"
 #import "DetailViewController.h"
+#import <AddressBookUI/AddressBookUI.h>
+#import "Color.h"
 
-@interface ViewController () <CLLocationManagerDelegate, UITableViewDataSource, UITableViewDelegate>
+
+@interface ViewController () <CLLocationManagerDelegate, UITableViewDataSource, UITableViewDelegate, MKMapViewDelegate>
 
 @property CLLocationManager *locationManager;
 @property CLLocation *currentLocation;
-@property NSArray *pizzaPlacesArray;
-
+@property (weak, nonatomic) IBOutlet MKMapView *mapView;
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
+
+@property NSArray *pizzaPlacesArray;
 
 @end
 
@@ -27,28 +31,72 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
 
+    self.automaticallyAdjustsScrollViewInsets = NO;
+
     self.navigationController.navigationBar.tintColor = [UIColor blackColor];
     self.navigationItem.title = @"Pick Your Pizzeria!";
-    self.navigationController.navigationBar.barTintColor = [UIColor redColor];
+    self.navigationController.navigationBar.barTintColor = [Color pizzaRed];
 
+    //set current location
     self.locationManager = [CLLocationManager new];
     self.locationManager.delegate = self;
+    
     [self updateCurrentLocation];
     self.tableView.delegate = self;
+    self.mapView.delegate = self;
+
 }
-//making a custom method to grab the users current location
+
+    //making a custom method to grab the users current location
 -(void)updateCurrentLocation
 {
     //calling the method- requestAlwaysAuthorization on the locationManager
-    [self.locationManager requestAlwaysAuthorization];
+    [self.locationManager requestWhenInUseAuthorization];
+    self.mapView.showsUserLocation = YES;
     [self.locationManager startUpdatingLocation];
 }
+
+
+-(MKAnnotationView *)mapView:(MKMapView *)mapView viewForAnnotation:(id<MKAnnotation>)annotation    {
+    //so this will run for everything except the current location
+    if (![annotation isEqual:mapView.userLocation]) {
+
+        MKPinAnnotationView *pin = [[MKPinAnnotationView alloc]initWithAnnotation:annotation reuseIdentifier:nil];
+        pin.pinColor = MKPinAnnotationColorPurple;
+        pin.canShowCallout = YES;
+        pin.rightCalloutAccessoryView = [UIButton buttonWithType:UIButtonTypeDetailDisclosure];
+        return pin;
+
+    } else  {
+        return nil;
+    }
+}
+
+
+-(void)geocodeLocation:(NSString *)locationString
+{
+    NSString *address = locationString;
+    CLGeocoder *geocoder = [CLGeocoder new];
+    [geocoder geocodeAddressString:address completionHandler:^(NSArray *placemarks, NSError *error) {
+        for (CLPlacemark *place in placemarks) {
+            //annotation implementation
+            MKPointAnnotation *annotation = [MKPointAnnotation new];
+            annotation.coordinate = place.location.coordinate;
+
+            annotation.title = place.name;
+
+
+            [self.mapView addAnnotation:annotation];
+        }
+    }];
+}
+
 -(void)findPizzerias:(CLLocation *)location
 {
     //inilize new mklocalsearchrequest of naturallaguage and local region
     MKLocalSearchRequest *request = [MKLocalSearchRequest new];
     request.naturalLanguageQuery = @"pizza";
-    request.region = MKCoordinateRegionMake(location.coordinate, MKCoordinateSpanMake(1, 1));//measeured in degree, 1 degree = 69 miles so .05 = 5% of that 69 miles range around the local gps of the phone
+    request.region = MKCoordinateRegionMake(location.coordinate, MKCoordinateSpanMake(0.01, 0.01));//measeured in degree, 1 degree = 69 miles so .05 = 5% of that 69 miles range around the local gps of the phone
 
     //init the search request with a block for the response
     MKLocalSearch *search = [[MKLocalSearch alloc] initWithRequest:request];
@@ -57,38 +105,80 @@
         NSArray *mapItems = response.mapItems;
         NSMutableArray *temporaryArray = [NSMutableArray new];
 
-        //run a for loop for 5 items, incrementing thru them one at a time
-        for (float i = 0; i < 10; i++)
-        {
-            MKMapItem *mapItem = [mapItems objectAtIndex:i];
+            for (MKMapItem *mapItem in mapItems) {
 
             //user location in meters
             CLLocationDistance metersAway = [mapItem.placemark.location distanceFromLocation:location];
             float milesDifference = metersAway / 1609.34;
-
-            //initn the new Location coffee place locally
             Pizzeria *pizza = [Pizzeria new];
             pizza.mapItem = mapItem;
             pizza.milesDifference = milesDifference;
-
-            //add the new class to the mutable array and print it
+        
             [temporaryArray addObject:pizza];
 
             pizza.name = pizza.mapItem.name;
-            pizza.placemark = pizza.mapItem.placemark; //cllocation object
+            pizza.placemark = pizza.mapItem.placemark; //clplacemark object
+            NSDictionary *dict = pizza.placemark.addressDictionary;
+            NSString *stringy = [dict objectForKey:@"Street"];
+            pizza.address = stringy;
+            NSLog(@"name: %@", pizza.name);
+
             pizza.phoneNumber = pizza.mapItem.phoneNumber;
-            pizza.url = pizza.mapItem.url;//url object
-            
+            pizza.url = pizza.mapItem.url;
         }
 
-        //init the the sort descriptor with teh key
+        //sort the array by distance from user
         NSSortDescriptor *sortDescriptor = [NSSortDescriptor sortDescriptorWithKey:@"milesDifference" ascending:true];
         NSArray *sortedArray = [temporaryArray sortedArrayUsingDescriptors:@[sortDescriptor]];
 
         self.pizzaPlacesArray = [NSArray arrayWithArray:sortedArray];
 
+        Pizzeria *pizza = [self.pizzaPlacesArray objectAtIndex:0];
+        if (pizza.address) {
+            [self geocodeLocation:pizza.address];
+        }
+        Pizzeria *pizza1 = [self.pizzaPlacesArray objectAtIndex:1];
+        if (pizza1.address) {
+            [self geocodeLocation:pizza1.address];
+        }
+        Pizzeria *pizza2 = [self.pizzaPlacesArray objectAtIndex:2];
+        if (pizza2.address) {
+            [self geocodeLocation:pizza2.address];
+        }
+        Pizzeria *pizza3 = [self.pizzaPlacesArray objectAtIndex:3];
+        if (pizza3.address) {
+            [self geocodeLocation:pizza3.address];
+        }
+        Pizzeria *pizza4 = [self.pizzaPlacesArray objectAtIndex:4];
+        if (pizza4.address) {
+            [self geocodeLocation:pizza4.address];
+        }
+        Pizzeria *pizza5 = [self.pizzaPlacesArray objectAtIndex:5];
+        if (pizza5.address) {
+            [self geocodeLocation:pizza5.address];
+        }
+        Pizzeria *pizza6 = [self.pizzaPlacesArray objectAtIndex:6];
+        if (pizza6.address) {
+            [self geocodeLocation:pizza6.address];
+        }
+        Pizzeria *pizza7 = [self.pizzaPlacesArray objectAtIndex:7];
+        if (pizza7.address) {
+            [self geocodeLocation:pizza7.address];
+        }
+        Pizzeria *pizza8 = [self.pizzaPlacesArray objectAtIndex:8];
+        if (pizza8.address) {
+            [self geocodeLocation:pizza8.address];
+        }
+        Pizzeria *pizza9 = [self.pizzaPlacesArray objectAtIndex:9];
+        if (pizza9.address) {
+            [self geocodeLocation:pizza9.address];
+        }
+
+
         [self.tableView reloadData];
     }];
+
+
 }
 
 
@@ -97,9 +187,20 @@
     self.currentLocation = locations.firstObject;
     NSLog(@"%@", self.currentLocation);
     [self.locationManager stopUpdatingLocation];
+
     //search for Pizerias
     [self findPizzerias:self.currentLocation];
 }
+
+-(void)mapView:(MKMapView *)mapView didUpdateUserLocation:(MKUserLocation *)userLocation{
+    MKCoordinateRegion region;
+    region.center = mapView.userLocation.coordinate;
+    region.span.latitudeDelta = 0.12;
+    region.span.longitudeDelta = 0.12;
+
+    [mapView setRegion:region animated:YES];
+}
+
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
@@ -109,10 +210,11 @@
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Cell"];
-
+    Pizzeria *pizza = [self.pizzaPlacesArray objectAtIndex:indexPath.row];
     //displays objects from the array with the added Pizza objects were added above
     NSString *currentValue = [[[self.pizzaPlacesArray objectAtIndex:indexPath.row] mapItem]name];
     [[cell textLabel]setText:currentValue];
+    cell.detailTextLabel.text = pizza.address;
 
     return cell;
 
@@ -123,7 +225,7 @@
     DetailViewController *detailVC = segue.destinationViewController;
     detailVC.pizzaPlace = [self.pizzaPlacesArray objectAtIndex:self.tableView.indexPathForSelectedRow.row];
     detailVC.currentLocation = self.currentLocation;
-
+    detailVC.arrayForPizzaPlaces = self.pizzaPlacesArray;
 }
 
 
