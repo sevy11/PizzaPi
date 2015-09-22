@@ -10,6 +10,18 @@
 
 @implementation Pizzeria
 
+-(instancetype)initWith:(double)radius andCost:(double)cost{
+
+    self = [super init];
+    if (self) {
+        self.intRadius = radius;
+        self.costOfPie = cost;
+
+    }
+    return self;
+}
+
+//one pie instance
 
 -(NSString *)pricePerInch:(double)radius andCost:(double)costOfPie    {
 
@@ -23,11 +35,6 @@
 }
 
 
-
-
-
-
-
 -(double)percentLgOverSmDigit:(double)costOfOne andTwo:(double)costOfTwo{
     double twoMinusOne  = costOfTwo - costOfOne;
     double divisorDifference = twoMinusOne / costOfOne;
@@ -35,16 +42,7 @@
 }
 
 
--(instancetype)initWith:(double)radius andCost:(double)cost{
 
-    self = [super init];
-    if (self) {
-        self.intRadius = radius;
-        self.costOfPie = cost;
-        
-    }
-    return self;
-}
 
 
 @end
