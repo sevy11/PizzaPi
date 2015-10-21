@@ -10,6 +10,12 @@
 
 @implementation Pizzeria
 
+//need to add places that our specialty and only have one size or
+//places that only allow online throgh their site
+//and the forth pizza Size
+//or slice only places
+
+
 -(instancetype)initWith:(double)radius andCost:(double)cost{
 
     self = [super init];

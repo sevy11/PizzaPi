@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		260FBE271BD5CEDA00C1D88B /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 260FBE261BD5CEDA00C1D88B /* MapKit.framework */; };
+		260FBE291BD5CEE100C1D88B /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 260FBE281BD5CEE100C1D88B /* CoreLocation.framework */; };
 		269BAD581B8E5CB3009429D2 /* Color.m in Sources */ = {isa = PBXBuildFile; fileRef = 269BAD571B8E5CB3009429D2 /* Color.m */; };
 		26E3527A1B73E37200477444 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 26E352791B73E37200477444 /* main.m */; };
 		26E3527D1B73E37200477444 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 26E3527C1B73E37200477444 /* AppDelegate.m */; };
@@ -20,7 +22,6 @@
 		26E352A81B77A13E00477444 /* PizzaCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 26E352A71B77A13E00477444 /* PizzaCollectionViewCell.m */; };
 		26E352AC1B77A34100477444 /* WebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 26E352AB1B77A34100477444 /* WebViewController.m */; };
 		26E352ED1B7E95AE00477444 /* SignInViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 26E352EC1B7E95AE00477444 /* SignInViewController.m */; };
-		26F118E61B87ADEE00932D97 /* AddressBookUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 26F118E51B87ADEE00932D97 /* AddressBookUI.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -34,6 +35,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		260FBE261BD5CEDA00C1D88B /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
+		260FBE281BD5CEE100C1D88B /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		269BAD561B8E5CB3009429D2 /* Color.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Color.h; sourceTree = "<group>"; };
 		269BAD571B8E5CB3009429D2 /* Color.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Color.m; sourceTree = "<group>"; };
 		26E352741B73E37200477444 /* PizzaPiBeta4.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PizzaPiBeta4.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -59,7 +62,6 @@
 		26E352AB1B77A34100477444 /* WebViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WebViewController.m; sourceTree = "<group>"; };
 		26E352EB1B7E95AE00477444 /* SignInViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SignInViewController.h; sourceTree = "<group>"; };
 		26E352EC1B7E95AE00477444 /* SignInViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SignInViewController.m; sourceTree = "<group>"; };
-		26F118E51B87ADEE00932D97 /* AddressBookUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AddressBookUI.framework; path = System/Library/Frameworks/AddressBookUI.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -67,7 +69,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				26F118E61B87ADEE00932D97 /* AddressBookUI.framework in Frameworks */,
+				260FBE291BD5CEE100C1D88B /* CoreLocation.framework in Frameworks */,
+				260FBE271BD5CEDA00C1D88B /* MapKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -84,7 +87,8 @@
 		26E3526B1B73E37200477444 = {
 			isa = PBXGroup;
 			children = (
-				26F118E51B87ADEE00932D97 /* AddressBookUI.framework */,
+				260FBE281BD5CEE100C1D88B /* CoreLocation.framework */,
+				260FBE261BD5CEDA00C1D88B /* MapKit.framework */,
 				26E352761B73E37200477444 /* PizzaPiBeta4 */,
 				26E352901B73E37200477444 /* PizzaPiBeta4Tests */,
 				26E352751B73E37200477444 /* Products */,
@@ -205,7 +209,7 @@
 		26E3526C1B73E37200477444 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0640;
+				LastUpgradeCheck = 0700;
 				ORGANIZATIONNAME = "Michael Sevy";
 				TargetAttributes = {
 					26E352731B73E37200477444 = {
@@ -332,6 +336,7 @@
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
@@ -376,6 +381,7 @@
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
@@ -397,6 +403,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = PizzaPiBeta4/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "Sevy.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Debug;
@@ -407,6 +414,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = PizzaPiBeta4/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "Sevy.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;
@@ -425,6 +433,7 @@
 				);
 				INFOPLIST_FILE = PizzaPiBeta4Tests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "Sevy.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/PizzaPiBeta4.app/PizzaPiBeta4";
 			};
@@ -440,6 +449,7 @@
 				);
 				INFOPLIST_FILE = PizzaPiBeta4Tests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "Sevy.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/PizzaPiBeta4.app/PizzaPiBeta4";
 			};

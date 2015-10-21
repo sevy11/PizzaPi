@@ -62,6 +62,10 @@
     self.callButton.backgroundColor = [Color pizzaRed];
     self.callButton.layer.cornerRadius = 6;
     [self.callButton sizeToFit];
+    NSLog(@"pizza place selected: %@", self.pizzaPlace.name);
+    if ([self.pizzaPlace.name containsString:@"Piece"]) {
+        NSLog(@"Piece seen");
+    }
 
     //phone number for dialing
     NSMutableString *oldString = [NSMutableString stringWithString:self.pizzaPlace.phoneNumber];
@@ -85,95 +89,651 @@
     Pizzeria *lou1 = [[Pizzeria alloc]initWith: 6 andCost:9.50];
     Pizzeria *lou2 = [[Pizzeria alloc]initWith: 7 andCost:12.50];
     Pizzeria *lou3 = [[Pizzeria alloc]initWith: 8 andCost:15.50];
+
     //Dominos
     Pizzeria *dom1 = [[Pizzeria alloc]initWith: 5 andCost:6.99];
     Pizzeria *dom2 = [[Pizzeria alloc]initWith: 6 andCost:8.99];
     Pizzeria *dom3 = [[Pizzeria alloc]initWith:7 andCost:10.99];
 //    Pizzeria *dom4 = [[Pizzeria alloc]initWith:@"extra large $12.99" andSizeInt:8 andCost:12.99 andName:@"Domino's"];
+
     //Giordano's
     Pizzeria *gior1 = [[Pizzeria alloc]initWith: 5 andCost:15.50];
     Pizzeria *gior2 = [[Pizzeria alloc]initWith: 6 andCost:20.25];
     Pizzeria *gior3 = [[Pizzeria alloc]initWith: 7 andCost:15.50];
+
     //piece
     Pizzeria *piece1 = [[Pizzeria alloc]initWith:5 andCost:12.49];
     Pizzeria *piece2 = [[Pizzeria alloc]initWith:6 andCost:15.49];
     Pizzeria *piece3 = [[Pizzeria alloc]initWith:7 andCost:18.49];
+
     //Gino's
     Pizzeria *gino1 = [[Pizzeria alloc]initWith:5 andCost:24.0];
     Pizzeria *gino2 = [[Pizzeria alloc]initWith:6 andCost:30.0];
     Pizzeria *gino3 = [[Pizzeria alloc]initWith:7 andCost:34.0];
+
     //Quatinos
     Pizzeria *quar1 = [[Pizzeria alloc]initWith: 5 andCost:10.0];
-    //one size
-   // Pizzeria *quar2 = [[Pizzeria alloc]initWith: 7 andCost:12.50];
-   // Pizzeria *quar = [[Pizzeria alloc]initWith: 8 andCost:15.50];
-
-    //Volare's
-    Pizzeria *vol1 = [[Pizzeria alloc]initWith: 5 andCost:9];
-    //one size 
-  //  Pizzeria *lou2 = [[Pizzeria alloc]initWith: 7 andCost:12.50];
-   // Pizzeria *lou3 = [[Pizzeria alloc]initWith: 8 andCost:15.50];
     
   //Santullos
     Pizzeria *santu1 = [[Pizzeria alloc]initWith: 10 andCost:28.0];
 //    Pizzeria *flou2 = [[Pizzeria alloc]initWith: 7 andCost:16.0];
 //    Pizzeria *flou3 = [[Pizzeria alloc]initWith: 8 andCost:18.0];
- //Dimo's- pizza by the slice tons of variety
+
+    //Dimo's- pizza by the slice tons of variety
     Pizzeria *dimos1 = [[Pizzeria alloc]initWith: 6 andCost:9.0];
     Pizzeria *dimos2 = [[Pizzeria alloc]initWith: 10 andCost:16.0];
 //    Pizzeria *lou3 = [[Pizzeria alloc]initWith: 8 andCost:15.50];
 
   //crocadile slices $3
-    Pizzeria *crocs = [[Pizzeria alloc]initWith: 6 andCost:9.50];
+   // Pizzeria *crocs = [[Pizzeria alloc]initWith: 6 andCost:9.50];
 //    Pizzeria *lou2 = [[Pizzeria alloc]initWith: 7 andCost:12.50];
 //    Pizzeria *lou3 = [[Pizzeria alloc]initWith: 8 andCost:15.50];
-  //Craft
+
+    //Craft
     Pizzeria *craft1 = [[Pizzeria alloc]initWith: 7 andCost:13.0];
     Pizzeria *craft2 = [[Pizzeria alloc]initWith: 9 andCost:17.0];
-  //Toppers
+
+//Toppers
     Pizzeria *topp1 = [[Pizzeria alloc]initWith: 6 andCost:13.99];
     Pizzeria *topp2 = [[Pizzeria alloc]initWith: 7 andCost:15.99];
     Pizzeria *topp3 = [[Pizzeria alloc]initWith: 8 andCost:17.99];
-    //Flo and Santos
+
+ //Flo and Santos
     Pizzeria *flo1 = [[Pizzeria alloc]initWith: 6 andCost:13.0];
     Pizzeria *flo2 = [[Pizzeria alloc]initWith: 7 andCost:16.0];
     Pizzeria *flo3 = [[Pizzeria alloc]initWith: 8 andCost:18.0];
-//    //Lou's
-//    Pizzeria *lou1 = [[Pizzeria alloc]initWith: 6 andCost:9.50];
-//    Pizzeria *lou2 = [[Pizzeria alloc]initWith: 7 andCost:12.50];
-//    Pizzeria *lou3 = [[Pizzeria alloc]initWith: 8 andCost:15.50];
-//    //Lou's
-//    Pizzeria *lou1 = [[Pizzeria alloc]initWith: 6 andCost:9.50];
-//    Pizzeria *lou2 = [[Pizzeria alloc]initWith: 7 andCost:12.50];
-//    Pizzeria *lou3 = [[Pizzeria alloc]initWith: 8 andCost:15.50];
-//    //Lou's
-//    Pizzeria *lou1 = [[Pizzeria alloc]initWith: 6 andCost:9.50];
-//    Pizzeria *lou2 = [[Pizzeria alloc]initWith: 7 andCost:12.50];
-//    Pizzeria *lou3 = [[Pizzeria alloc]initWith: 8 andCost:15.50];
-//    //Lou's
-//    Pizzeria *lou1 = [[Pizzeria alloc]initWith: 6 andCost:9.50];
-//    Pizzeria *lou2 = [[Pizzeria alloc]initWith: 7 andCost:12.50];
-//    Pizzeria *lou3 = [[Pizzeria alloc]initWith: 8 andCost:15.50];
-//    //Lou's
-//    Pizzeria *lou1 = [[Pizzeria alloc]initWith: 6 andCost:9.50];
-//    Pizzeria *lou2 = [[Pizzeria alloc]initWith: 7 andCost:12.50];
-//    Pizzeria *lou3 = [[Pizzeria alloc]initWith: 8 andCost:15.50];
-//    //Lou's
-//    Pizzeria *lou1 = [[Pizzeria alloc]initWith: 6 andCost:9.50];
-//    Pizzeria *lou2 = [[Pizzeria alloc]initWith: 7 andCost:12.50];
-//    Pizzeria *lou3 = [[Pizzeria alloc]initWith: 8 andCost:15.50];
-//    //Lou's
-//    Pizzeria *lou1 = [[Pizzeria alloc]initWith: 6 andCost:9.50];
-//    Pizzeria *lou2 = [[Pizzeria alloc]initWith: 7 andCost:12.50];
-//    Pizzeria *lou3 = [[Pizzeria alloc]initWith: 8 andCost:15.50];
-//    //Lou's
-//    Pizzeria *lou1 = [[Pizzeria alloc]initWith: 6 andCost:9.50];
-//    Pizzeria *lou2 = [[Pizzeria alloc]initWith: 7 andCost:12.50];
-//    Pizzeria *lou3 = [[Pizzeria alloc]initWith: 8 andCost:15.50];
 
-    //*******add pizzerias**********
+//Pequods
+    Pizzeria *pequ1 = [[Pizzeria alloc]initWith: 5 andCost:11.75];
+    Pizzeria *pequ2 = [[Pizzeria alloc]initWith: 6 andCost:15.50];
+    Pizzeria *pequ3 = [[Pizzeria alloc]initWith: 7 andCost:18.75];
+//My Pi //deep dish, they also have thin
+    Pizzeria *myPi1 = [[Pizzeria alloc]initWith: 6 andCost:12.50];
+    Pizzeria *myPi2 = [[Pizzeria alloc]initWith: 7 andCost:16.75];
+    Pizzeria *myPi3 = [[Pizzeria alloc]initWith: 8 andCost:19.50];
+    //Lou's
+    Pizzeria *pizano1 = [[Pizzeria alloc]initWith: 5 andCost:15.70];
+    Pizzeria *pizano2 = [[Pizzeria alloc]initWith: 6 andCost:20.45];
+    Pizzeria *pizano3 = [[Pizzeria alloc]initWith: 7 andCost:22.45];
+//    //Osteria La Madia-- bunch of pizza's but all one size and price
+//Pizzeria Uno, unconfirmed radiu'
+    Pizzeria *uno1 = [[Pizzeria alloc]initWith: 5 andCost:12.99];
+    Pizzeria *uno2 = [[Pizzeria alloc]initWith: 6 andCost:17.49];
+    Pizzeria *uno3 = [[Pizzeria alloc]initWith: 7 andCost:22.79];
+//    Bongiorno's Italian deli and pizza- one size bunch of differnt pizzas
+    //bella bacinos
+    Pizzeria *bella1 = [[Pizzeria alloc]initWith: 5 andCost:9.35];
+    Pizzeria *bella2 = [[Pizzeria alloc]initWith: 6 andCost:12.95];
+    Pizzeria *bella3 = [[Pizzeria alloc]initWith: 7 andCost:17.50];
+//    Pizzeria *bella4 = [[Pizzeria alloc]initWith: 8 andCost:21.50];
 
-    if ([self.pizzaPlace.name containsString:@"FloSantos"]) {
+//Pizzeria Ora
+    Pizzeria *ora1 = [[Pizzeria alloc]initWith: 4.5 andCost:10.50];
+    Pizzeria *ora2 = [[Pizzeria alloc]initWith: 6 andCost:14.55];
+    Pizzeria *ora3 = [[Pizzeria alloc]initWith: 7 andCost:18.75];
+//Vapiano one size
+//Tesori - one size upscale italian
+//Sbarro- no data online
+//Blaze fast fired pizza- one size quick casual
+//Beggars Pizza
+    Pizzeria *beggars1 = [[Pizzeria alloc]initWith: 5 andCost:13.50];
+    Pizzeria *beggars2 = [[Pizzeria alloc]initWith: 6 andCost:17.75];
+    Pizzeria *beggars3 = [[Pizzeria alloc]initWith: 7 andCost:22.50];
+//Sarpino's
+    Pizzeria *sarp1 = [[Pizzeria alloc]initWith: 5 andCost:10.99];
+    Pizzeria *sarp2 = [[Pizzeria alloc]initWith: 6 andCost:13.99];
+    Pizzeria *sarp3 = [[Pizzeria alloc]initWith: 7 andCost:15.99];
+//    Pizzeria *sarp4 = [[Pizzeria alloc]initWith: 8 andCost:17.99];
+//Venice Cafe one size
+//Bacci- hand tossed NY style
+    Pizzeria *bacci1 = [[Pizzeria alloc]initWith: 7 andCost:14.95];
+    Pizzeria *bacci2 = [[Pizzeria alloc]initWith: 9 andCost:19.95];
+    Pizzeria *bacci3 = [[Pizzeria alloc]initWith: 12 andCost:27.95];
+//Pat's
+    Pizzeria *pats1 = [[Pizzeria alloc]initWith: 6 andCost:12.25];
+    Pizzeria *pats2 = [[Pizzeria alloc]initWith: 7 andCost:14.50];
+    Pizzeria *pats3 = [[Pizzeria alloc]initWith: 8 andCost:17.00];
+//Old fifth
+    Pizzeria *old51 = [[Pizzeria alloc]initWith: 7 andCost:18.00];
+    Pizzeria *old52= [[Pizzeria alloc]initWith: 8 andCost:23.00];
+    //Pizzeria *sarp3 = [[Pizzeria alloc]initWith: 7 andCost:15.99];
+//old town pub thin
+    Pizzeria *otp1 = [[Pizzeria alloc]initWith: 6 andCost:8.00];
+    Pizzeria *otp2 = [[Pizzeria alloc]initWith: 7 andCost:12.00];
+    Pizzeria *otp3 = [[Pizzeria alloc]initWith: 8 andCost:15.00];
+//5 bouroughs
+    Pizzeria *fivebur1 = [[Pizzeria alloc]initWith: 5 andCost:7.99];
+    Pizzeria *fivebur2 = [[Pizzeria alloc]initWith: 6 andCost:10.99];
+    Pizzeria *fivebur3 = [[Pizzeria alloc]initWith: 7 andCost:13.49];
+    //Pizzeria *fivebur4 = [[Pizzeria alloc]initWith: 9 andCost:18.49];
+//downtown pizza
+    Pizzeria *dtown1 = [[Pizzeria alloc]initWith: 5 andCost:13.95];
+    Pizzeria *dtown2 = [[Pizzeria alloc]initWith: 6 andCost:16.95];
+    //Pizzeria *3 = [[Pizzeria alloc]initWith: 7 andCost:15.99];
+//pizza and oven grinder
+    Pizzeria *grind1 = [[Pizzeria alloc]initWith: 4 andCost:11.75];
+    Pizzeria *grind2 = [[Pizzeria alloc]initWith: 5 andCost:23.50];
+//    Pizzeria *sarp3 = [[Pizzeria alloc]initWith: 7 andCost:15.99];
+//the art of pizza
+    Pizzeria *art1 = [[Pizzeria alloc]initWith: 5 andCost:14.75];
+    Pizzeria *art2 = [[Pizzeria alloc]initWith: 6 andCost:18.75];
+    Pizzeria *art3 = [[Pizzeria alloc]initWith: 7 andCost:22.25];
+
+    //Pizzeria's in views
+    if ([self.pizzaPlace.name containsString:@"The Art of Pizza"]) {
+        self.imageView.image = [UIImage imageNamed:@"artOfPizzaImage"];
+        Pizzeria *firstPizza = art1;
+        Pizzeria *secondPizza = art2;
+        Pizzeria *thirdPizza = art3;
+
+        double firstCost = firstPizza.costOfPie;
+        double secondCost = secondPizza.costOfPie;
+        double thirdCost = thirdPizza.costOfPie;
+        double firstRadius = firstPizza.intRadius;
+        double secondRadius = secondPizza.intRadius;
+        double thirdRadius = thirdPizza.intRadius;
+
+        self.labelTwo.text = [NSString stringWithFormat:@"$%0.2f", firstCost];
+        self.labelThree.text = [firstPizza pricePerInch:firstRadius andCost:firstCost];
+
+        self.labelFive.text = [NSString stringWithFormat:@"$%0.2f", secondCost];
+        self.labelSix.text = [secondPizza pricePerInch:secondRadius andCost:secondCost];
+        double quotient = [secondPizza percentLgOverSmDigit:firstCost andTwo:secondCost];
+        self.labelSeven.text = [NSString stringWithFormat:@"%0.1f%% > sm", quotient * 100];
+
+        self.labelNine.text = [NSString stringWithFormat:@"$%0.2f", thirdCost];
+        self.labelTen.text = [thirdPizza pricePerInch:thirdRadius andCost:thirdCost];
+        double quotient1 = [thirdPizza percentLgOverSmDigit:secondCost andTwo:thirdCost];
+        double quotient2 = [thirdPizza percentLgOverSmDigit:firstCost andTwo:thirdCost];
+        self.labelEleven.text = [NSString stringWithFormat:@"%0.1f%% > med", quotient1 * 100];
+        self.labelTwelve.text = [NSString stringWithFormat:@"%0.1f%% > sm", quotient2 * 100];
+
+    } else if ([self.pizzaPlace.name containsString:@"Chicago Pizza And Oven Grinder"]) {
+        self.imageView.image = [UIImage imageNamed:@"chicagoOven"];
+        Pizzeria *firstPizza = grind1;
+        Pizzeria *secondPizza = grind2;
+        //        Pizzeria *thirdPizza = fivebur3;
+
+        double firstCost = firstPizza.costOfPie;
+        double secondCost = secondPizza.costOfPie;
+        //      double thirdCost = thirdPizza.costOfPie;
+        double firstRadius = firstPizza.intRadius;
+        double secondRadius = secondPizza.intRadius;
+        //    double thirdRadius = thirdPizza.intRadius;
+
+        self.labelTwo.text = [NSString stringWithFormat:@"$%0.2f", firstCost];
+        self.labelThree.text = [firstPizza pricePerInch:firstRadius andCost:firstCost];
+
+        self.labelFive.text = [NSString stringWithFormat:@"$%0.2f", secondCost];
+        self.labelSix.text = [secondPizza pricePerInch:secondRadius andCost:secondCost];
+        double quotient = [secondPizza percentLgOverSmDigit:firstCost andTwo:secondCost];
+        self.labelSeven.text = [NSString stringWithFormat:@"%0.1f%% > sm", quotient * 100];
+
+    } else if ([self.pizzaPlace.name containsString:@"Downtown Pizza"]) {
+        self.imageView.image = [UIImage imageNamed:@"downtownImage"];
+        Pizzeria *firstPizza = dtown1;
+        Pizzeria *secondPizza = dtown2;
+//        Pizzeria *thirdPizza = fivebur3;
+
+        double firstCost = firstPizza.costOfPie;
+        double secondCost = secondPizza.costOfPie;
+  //      double thirdCost = thirdPizza.costOfPie;
+        double firstRadius = firstPizza.intRadius;
+        double secondRadius = secondPizza.intRadius;
+    //    double thirdRadius = thirdPizza.intRadius;
+
+        self.labelTwo.text = [NSString stringWithFormat:@"$%0.2f", firstCost];
+        self.labelThree.text = [firstPizza pricePerInch:firstRadius andCost:firstCost];
+
+        self.labelFive.text = [NSString stringWithFormat:@"$%0.2f", secondCost];
+        self.labelSix.text = [secondPizza pricePerInch:secondRadius andCost:secondCost];
+        double quotient = [secondPizza percentLgOverSmDigit:firstCost andTwo:secondCost];
+        self.labelSeven.text = [NSString stringWithFormat:@"%0.1f%% > sm", quotient * 100];
+
+    } else if ([self.pizzaPlace.name containsString:@"5 Buroughs Pizza"]) {
+        self.imageView.image = [UIImage imageNamed:@"5boroughs"];
+        Pizzeria *firstPizza = fivebur1;
+        Pizzeria *secondPizza = fivebur2;
+        Pizzeria *thirdPizza = fivebur3;
+
+        double firstCost = firstPizza.costOfPie;
+        double secondCost = secondPizza.costOfPie;
+        double thirdCost = thirdPizza.costOfPie;
+        double firstRadius = firstPizza.intRadius;
+        double secondRadius = secondPizza.intRadius;
+        double thirdRadius = thirdPizza.intRadius;
+
+        self.labelTwo.text = [NSString stringWithFormat:@"$%0.2f", firstCost];
+        self.labelThree.text = [firstPizza pricePerInch:firstRadius andCost:firstCost];
+
+        self.labelFive.text = [NSString stringWithFormat:@"$%0.2f", secondCost];
+        self.labelSix.text = [secondPizza pricePerInch:secondRadius andCost:secondCost];
+        double quotient = [secondPizza percentLgOverSmDigit:firstCost andTwo:secondCost];
+        self.labelSeven.text = [NSString stringWithFormat:@"%0.1f%% > sm", quotient * 100];
+
+        self.labelNine.text = [NSString stringWithFormat:@"$%0.2f", thirdCost];
+        self.labelTen.text = [thirdPizza pricePerInch:thirdRadius andCost:thirdCost];
+        double quotient1 = [thirdPizza percentLgOverSmDigit:secondCost andTwo:thirdCost];
+        double quotient2 = [thirdPizza percentLgOverSmDigit:firstCost andTwo:thirdCost];
+        self.labelEleven.text = [NSString stringWithFormat:@"%0.1f%% > med", quotient1 * 100];
+        self.labelTwelve.text = [NSString stringWithFormat:@"%0.1f%% > sm", quotient2 * 100];
+
+    } else if ([self.pizzaPlace.name containsString:@"Old Town Pub"]) {
+        self.imageView.image = [UIImage imageNamed:@"Old Town Pizza Pub"];
+        Pizzeria *firstPizza = otp1;
+        Pizzeria *secondPizza = otp2;
+        Pizzeria *thirdPizza = otp3;
+
+        double firstCost = firstPizza.costOfPie;
+        double secondCost = secondPizza.costOfPie;
+        double thirdCost = thirdPizza.costOfPie;
+        double firstRadius = firstPizza.intRadius;
+        double secondRadius = secondPizza.intRadius;
+        double thirdRadius = thirdPizza.intRadius;
+
+        self.labelTwo.text = [NSString stringWithFormat:@"$%0.2f", firstCost];
+        self.labelThree.text = [firstPizza pricePerInch:firstRadius andCost:firstCost];
+
+        self.labelFive.text = [NSString stringWithFormat:@"$%0.2f", secondCost];
+        self.labelSix.text = [secondPizza pricePerInch:secondRadius andCost:secondCost];
+        double quotient = [secondPizza percentLgOverSmDigit:firstCost andTwo:secondCost];
+        self.labelSeven.text = [NSString stringWithFormat:@"%0.1f%% > sm", quotient * 100];
+
+        self.labelNine.text = [NSString stringWithFormat:@"$%0.2f", thirdCost];
+        self.labelTen.text = [thirdPizza pricePerInch:thirdRadius andCost:thirdCost];
+        double quotient1 = [thirdPizza percentLgOverSmDigit:secondCost andTwo:thirdCost];
+        double quotient2 = [thirdPizza percentLgOverSmDigit:firstCost andTwo:thirdCost];
+        self.labelEleven.text = [NSString stringWithFormat:@"%0.1f%% > med", quotient1 * 100];
+        self.labelTwelve.text = [NSString stringWithFormat:@"%0.1f%% > sm", quotient2 * 100];
+
+    } else if ([self.pizzaPlace.name containsString:@"Pat's Pizzeria"]) {
+        self.imageView.image = [UIImage imageNamed:@"patsImage"];
+        Pizzeria *firstPizza = pats1;
+        Pizzeria *secondPizza = pats2;
+        Pizzeria *thirdPizza = pats3;
+
+        double firstCost = firstPizza.costOfPie;
+        double secondCost = secondPizza.costOfPie;
+        double thirdCost = thirdPizza.costOfPie;
+        double firstRadius = firstPizza.intRadius;
+        double secondRadius = secondPizza.intRadius;
+        double thirdRadius = thirdPizza.intRadius;
+
+        self.labelTwo.text = [NSString stringWithFormat:@"$%0.2f", firstCost];
+        self.labelThree.text = [firstPizza pricePerInch:firstRadius andCost:firstCost];
+
+        self.labelFive.text = [NSString stringWithFormat:@"$%0.2f", secondCost];
+        self.labelSix.text = [secondPizza pricePerInch:secondRadius andCost:secondCost];
+        double quotient = [secondPizza percentLgOverSmDigit:firstCost andTwo:secondCost];
+        self.labelSeven.text = [NSString stringWithFormat:@"%0.1f%% > sm", quotient * 100];
+
+        self.labelNine.text = [NSString stringWithFormat:@"$%0.2f", thirdCost];
+        self.labelTen.text = [thirdPizza pricePerInch:thirdRadius andCost:thirdCost];
+        double quotient1 = [thirdPizza percentLgOverSmDigit:secondCost andTwo:thirdCost];
+        double quotient2 = [thirdPizza percentLgOverSmDigit:firstCost andTwo:thirdCost];
+        self.labelEleven.text = [NSString stringWithFormat:@"%0.1f%% > med", quotient1 * 100];
+        self.labelTwelve.text = [NSString stringWithFormat:@"%0.1f%% > sm", quotient2 * 100];
+
+    } else if ([self.pizzaPlace.name containsString:@"Old Fifth"]) {
+        self.imageView.image = [UIImage imageNamed:@"oldfifthImage"];
+        Pizzeria *firstPizza = old51;
+        Pizzeria *secondPizza = old52;
+//        Pizzeria *thirdPizza = bacci3;
+
+        double firstCost = firstPizza.costOfPie;
+        double secondCost = secondPizza.costOfPie;
+  //      double thirdCost = thirdPizza.costOfPie;
+        double firstRadius = firstPizza.intRadius;
+        double secondRadius = secondPizza.intRadius;
+    //    double thirdRadius = thirdPizza.intRadius;
+
+        self.labelTwo.text = [NSString stringWithFormat:@"$%0.2f", firstCost];
+        self.labelThree.text = [firstPizza pricePerInch:firstRadius andCost:firstCost];
+
+        self.labelFive.text = [NSString stringWithFormat:@"$%0.2f", secondCost];
+        self.labelSix.text = [secondPizza pricePerInch:secondRadius andCost:secondCost];
+        double quotient = [secondPizza percentLgOverSmDigit:firstCost andTwo:secondCost];
+        self.labelSeven.text = [NSString stringWithFormat:@"%0.1f%% > sm", quotient * 100];
+
+    } else if ([self.pizzaPlace.name containsString:@"Bacci"]) {
+        self.imageView.image = [UIImage imageNamed:@"bacciImage"];
+        Pizzeria *firstPizza = bacci1;
+        Pizzeria *secondPizza = bacci2;
+        Pizzeria *thirdPizza = bacci3;
+
+        double firstCost = firstPizza.costOfPie;
+        double secondCost = secondPizza.costOfPie;
+        double thirdCost = thirdPizza.costOfPie;
+        double firstRadius = firstPizza.intRadius;
+        double secondRadius = secondPizza.intRadius;
+        double thirdRadius = thirdPizza.intRadius;
+
+        self.labelTwo.text = [NSString stringWithFormat:@"$%0.2f", firstCost];
+        self.labelThree.text = [firstPizza pricePerInch:firstRadius andCost:firstCost];
+
+        self.labelFive.text = [NSString stringWithFormat:@"$%0.2f", secondCost];
+        self.labelSix.text = [secondPizza pricePerInch:secondRadius andCost:secondCost];
+        double quotient = [secondPizza percentLgOverSmDigit:firstCost andTwo:secondCost];
+        self.labelSeven.text = [NSString stringWithFormat:@"%0.1f%% > sm", quotient * 100];
+
+        self.labelNine.text = [NSString stringWithFormat:@"$%0.2f", thirdCost];
+        self.labelTen.text = [thirdPizza pricePerInch:thirdRadius andCost:thirdCost];
+        double quotient1 = [thirdPizza percentLgOverSmDigit:secondCost andTwo:thirdCost];
+        double quotient2 = [thirdPizza percentLgOverSmDigit:firstCost andTwo:thirdCost];
+        self.labelEleven.text = [NSString stringWithFormat:@"%0.1f%% > med", quotient1 * 100];
+        self.labelTwelve.text = [NSString stringWithFormat:@"%0.1f%% > sm", quotient2 * 100];
+
+
+    } else if ([self.pizzaPlace.name containsString:@"Sarpino's"]) {
+        self.imageView.image = [UIImage imageNamed:@"sarpinosImage"];
+        Pizzeria *firstPizza = sarp1;
+        Pizzeria *secondPizza = sarp2;
+        Pizzeria *thirdPizza = sarp3;
+
+        double firstCost = firstPizza.costOfPie;
+        double secondCost = secondPizza.costOfPie;
+        double thirdCost = thirdPizza.costOfPie;
+        double firstRadius = firstPizza.intRadius;
+        double secondRadius = secondPizza.intRadius;
+        double thirdRadius = thirdPizza.intRadius;
+
+        self.labelTwo.text = [NSString stringWithFormat:@"$%0.2f", firstCost];
+        self.labelThree.text = [firstPizza pricePerInch:firstRadius andCost:firstCost];
+
+        self.labelFive.text = [NSString stringWithFormat:@"$%0.2f", secondCost];
+        self.labelSix.text = [secondPizza pricePerInch:secondRadius andCost:secondCost];
+        double quotient = [secondPizza percentLgOverSmDigit:firstCost andTwo:secondCost];
+        self.labelSeven.text = [NSString stringWithFormat:@"%0.1f%% > sm", quotient * 100];
+
+        self.labelNine.text = [NSString stringWithFormat:@"$%0.2f", thirdCost];
+        self.labelTen.text = [thirdPizza pricePerInch:thirdRadius andCost:thirdCost];
+        double quotient1 = [thirdPizza percentLgOverSmDigit:secondCost andTwo:thirdCost];
+        double quotient2 = [thirdPizza percentLgOverSmDigit:firstCost andTwo:thirdCost];
+        self.labelEleven.text = [NSString stringWithFormat:@"%0.1f%% > med", quotient1 * 100];
+        self.labelTwelve.text = [NSString stringWithFormat:@"%0.1f%% > sm", quotient2 * 100];
+
+    } else if ([self.pizzaPlace.name containsString:@"Beggars"]) {
+        self.imageView.image = [UIImage imageNamed:@"beggarsImage"];
+        Pizzeria *firstPizza = beggars1;
+        Pizzeria *secondPizza = beggars2;
+        Pizzeria *thirdPizza = beggars3;
+
+        double firstCost = firstPizza.costOfPie;
+        double secondCost = secondPizza.costOfPie;
+        double thirdCost = thirdPizza.costOfPie;
+        double firstRadius = firstPizza.intRadius;
+        double secondRadius = secondPizza.intRadius;
+        double thirdRadius = thirdPizza.intRadius;
+
+        self.labelTwo.text = [NSString stringWithFormat:@"$%0.2f", firstCost];
+        self.labelThree.text = [firstPizza pricePerInch:firstRadius andCost:firstCost];
+
+        self.labelFive.text = [NSString stringWithFormat:@"$%0.2f", secondCost];
+        self.labelSix.text = [secondPizza pricePerInch:secondRadius andCost:secondCost];
+        double quotient = [secondPizza percentLgOverSmDigit:firstCost andTwo:secondCost];
+        self.labelSeven.text = [NSString stringWithFormat:@"%0.1f%% > sm", quotient * 100];
+
+        self.labelNine.text = [NSString stringWithFormat:@"$%0.2f", thirdCost];
+        self.labelTen.text = [thirdPizza pricePerInch:thirdRadius andCost:thirdCost];
+        double quotient1 = [thirdPizza percentLgOverSmDigit:secondCost andTwo:thirdCost];
+        double quotient2 = [thirdPizza percentLgOverSmDigit:firstCost andTwo:thirdCost];
+        self.labelEleven.text = [NSString stringWithFormat:@"%0.1f%% > med", quotient1 * 100];
+        self.labelTwelve.text = [NSString stringWithFormat:@"%0.1f%% > sm", quotient2 * 100];
+
+    } else if ([self.pizzaPlace.name containsString:@"Pizzeria Ora"]) {
+        self.imageView.image = [UIImage imageNamed:@"pizzeriaOra"];
+        Pizzeria *firstPizza = ora1;
+        Pizzeria *secondPizza = ora2;
+        Pizzeria *thirdPizza = ora3;
+
+        double firstCost = firstPizza.costOfPie;
+        double secondCost = secondPizza.costOfPie;
+        double thirdCost = thirdPizza.costOfPie;
+        double firstRadius = firstPizza.intRadius;
+        double secondRadius = secondPizza.intRadius;
+        double thirdRadius = thirdPizza.intRadius;
+
+        self.labelTwo.text = [NSString stringWithFormat:@"$%0.2f", firstCost];
+        self.labelThree.text = [firstPizza pricePerInch:firstRadius andCost:firstCost];
+
+        self.labelFive.text = [NSString stringWithFormat:@"$%0.2f", secondCost];
+        self.labelSix.text = [secondPizza pricePerInch:secondRadius andCost:secondCost];
+        double quotient = [secondPizza percentLgOverSmDigit:firstCost andTwo:secondCost];
+        self.labelSeven.text = [NSString stringWithFormat:@"%0.1f%% > sm", quotient * 100];
+
+        self.labelNine.text = [NSString stringWithFormat:@"$%0.2f", thirdCost];
+        self.labelTen.text = [thirdPizza pricePerInch:thirdRadius andCost:thirdCost];
+        double quotient1 = [thirdPizza percentLgOverSmDigit:secondCost andTwo:thirdCost];
+        double quotient2 = [thirdPizza percentLgOverSmDigit:firstCost andTwo:thirdCost];
+        self.labelEleven.text = [NSString stringWithFormat:@"%0.1f%% > med", quotient1 * 100];
+        self.labelTwelve.text = [NSString stringWithFormat:@"%0.1f%% > sm", quotient2 * 100];
+
+    } else if ([self.pizzaPlace.name containsString:@"Pizzeria Ora"]) {
+        self.imageView.image = [UIImage imageNamed:@"pizzeriaOra"];
+        Pizzeria *firstPizza = ora1;
+        Pizzeria *secondPizza = ora2;
+        Pizzeria *thirdPizza = ora3;
+
+        double firstCost = firstPizza.costOfPie;
+        double secondCost = secondPizza.costOfPie;
+        double thirdCost = thirdPizza.costOfPie;
+        double firstRadius = firstPizza.intRadius;
+        double secondRadius = secondPizza.intRadius;
+        double thirdRadius = thirdPizza.intRadius;
+
+        self.labelTwo.text = [NSString stringWithFormat:@"$%0.2f", firstCost];
+        self.labelThree.text = [firstPizza pricePerInch:firstRadius andCost:firstCost];
+
+        self.labelFive.text = [NSString stringWithFormat:@"$%0.2f", secondCost];
+        self.labelSix.text = [secondPizza pricePerInch:secondRadius andCost:secondCost];
+        double quotient = [secondPizza percentLgOverSmDigit:firstCost andTwo:secondCost];
+        self.labelSeven.text = [NSString stringWithFormat:@"%0.1f%% > sm", quotient * 100];
+
+        self.labelNine.text = [NSString stringWithFormat:@"$%0.2f", thirdCost];
+        self.labelTen.text = [thirdPizza pricePerInch:thirdRadius andCost:thirdCost];
+        double quotient1 = [thirdPizza percentLgOverSmDigit:secondCost andTwo:thirdCost];
+        double quotient2 = [thirdPizza percentLgOverSmDigit:firstCost andTwo:thirdCost];
+        self.labelEleven.text = [NSString stringWithFormat:@"%0.1f%% > med", quotient1 * 100];
+        self.labelTwelve.text = [NSString stringWithFormat:@"%0.1f%% > sm", quotient2 * 100];
+
+    } else if ([self.pizzaPlace.name containsString:@"Bella Bacino"] || [self.pizzaPlace.name containsString:@"Bacino"]) {
+        self.imageView.image = [UIImage imageNamed:@"bellaImage"];
+        Pizzeria *firstPizza = bella1;
+        Pizzeria *secondPizza = bella2;
+        Pizzeria *thirdPizza = bella3;
+
+        double firstCost = firstPizza.costOfPie;
+        double secondCost = secondPizza.costOfPie;
+        double thirdCost = thirdPizza.costOfPie;
+        double firstRadius = firstPizza.intRadius;
+        double secondRadius = secondPizza.intRadius;
+        double thirdRadius = thirdPizza.intRadius;
+
+        self.labelTwo.text = [NSString stringWithFormat:@"$%0.2f", firstCost];
+        self.labelThree.text = [firstPizza pricePerInch:firstRadius andCost:firstCost];
+
+        self.labelFive.text = [NSString stringWithFormat:@"$%0.2f", secondCost];
+        self.labelSix.text = [secondPizza pricePerInch:secondRadius andCost:secondCost];
+        double quotient = [secondPizza percentLgOverSmDigit:firstCost andTwo:secondCost];
+        self.labelSeven.text = [NSString stringWithFormat:@"%0.1f%% > sm", quotient * 100];
+
+        self.labelNine.text = [NSString stringWithFormat:@"$%0.2f", thirdCost];
+        self.labelTen.text = [thirdPizza pricePerInch:thirdRadius andCost:thirdCost];
+        double quotient1 = [thirdPizza percentLgOverSmDigit:secondCost andTwo:thirdCost];
+        double quotient2 = [thirdPizza percentLgOverSmDigit:firstCost andTwo:thirdCost];
+        self.labelEleven.text = [NSString stringWithFormat:@"%0.1f%% > med", quotient1 * 100];
+        self.labelTwelve.text = [NSString stringWithFormat:@"%0.1f%% > sm", quotient2 * 100];
+
+    } else if ([self.pizzaPlace.name containsString:@"Uno"]) {
+        self.imageView.image = [UIImage imageNamed:@"pizzeriaUno"];
+        Pizzeria *firstPizza = uno1;
+        Pizzeria *secondPizza = uno2;
+        Pizzeria *thirdPizza = uno3;
+
+        double firstCost = firstPizza.costOfPie;
+        double secondCost = secondPizza.costOfPie;
+        double thirdCost = thirdPizza.costOfPie;
+        double firstRadius = firstPizza.intRadius;
+        double secondRadius = secondPizza.intRadius;
+        double thirdRadius = thirdPizza.intRadius;
+
+        self.labelTwo.text = [NSString stringWithFormat:@"$%0.2f", firstCost];
+        self.labelThree.text = [firstPizza pricePerInch:firstRadius andCost:firstCost];
+
+        self.labelFive.text = [NSString stringWithFormat:@"$%0.2f", secondCost];
+        self.labelSix.text = [secondPizza pricePerInch:secondRadius andCost:secondCost];
+        double quotient = [secondPizza percentLgOverSmDigit:firstCost andTwo:secondCost];
+        self.labelSeven.text = [NSString stringWithFormat:@"%0.1f%% > sm", quotient * 100];
+
+        self.labelNine.text = [NSString stringWithFormat:@"$%0.2f", thirdCost];
+        self.labelTen.text = [thirdPizza pricePerInch:thirdRadius andCost:thirdCost];
+        double quotient1 = [thirdPizza percentLgOverSmDigit:secondCost andTwo:thirdCost];
+        double quotient2 = [thirdPizza percentLgOverSmDigit:firstCost andTwo:thirdCost];
+        self.labelEleven.text = [NSString stringWithFormat:@"%0.1f%% > med", quotient1 * 100];
+        self.labelTwelve.text = [NSString stringWithFormat:@"%0.1f%% > sm", quotient2 * 100];
+
+    } else if ([self.pizzaPlace.name containsString:@"Uno"] || [self.pizzaPlace.name containsString:@"Due"]) {
+        self.imageView.image = [UIImage imageNamed:@"pizzeriaUno"];
+        Pizzeria *firstPizza = uno1;
+        Pizzeria *secondPizza = uno2;
+        Pizzeria *thirdPizza = uno3;
+
+        double firstCost = firstPizza.costOfPie;
+        double secondCost = secondPizza.costOfPie;
+        double thirdCost = thirdPizza.costOfPie;
+        double firstRadius = firstPizza.intRadius;
+        double secondRadius = secondPizza.intRadius;
+        double thirdRadius = thirdPizza.intRadius;
+
+        self.labelTwo.text = [NSString stringWithFormat:@"$%0.2f", firstCost];
+        self.labelThree.text = [firstPizza pricePerInch:firstRadius andCost:firstCost];
+
+        self.labelFive.text = [NSString stringWithFormat:@"$%0.2f", secondCost];
+        self.labelSix.text = [secondPizza pricePerInch:secondRadius andCost:secondCost];
+        double quotient = [secondPizza percentLgOverSmDigit:firstCost andTwo:secondCost];
+        self.labelSeven.text = [NSString stringWithFormat:@"%0.1f%% > sm", quotient * 100];
+
+        self.labelNine.text = [NSString stringWithFormat:@"$%0.2f", thirdCost];
+        self.labelTen.text = [thirdPizza pricePerInch:thirdRadius andCost:thirdCost];
+        double quotient1 = [thirdPizza percentLgOverSmDigit:secondCost andTwo:thirdCost];
+        double quotient2 = [thirdPizza percentLgOverSmDigit:firstCost andTwo:thirdCost];
+        self.labelEleven.text = [NSString stringWithFormat:@"%0.1f%% > med", quotient1 * 100];
+        self.labelTwelve.text = [NSString stringWithFormat:@"%0.1f%% > sm", quotient2 * 100];
+
+    } else if ([self.pizzaPlace.name containsString:@"Uno"]) {
+        self.imageView.image = [UIImage imageNamed:@"pizzeriaUno"];
+        Pizzeria *firstPizza = uno1;
+        Pizzeria *secondPizza = uno2;
+        Pizzeria *thirdPizza = uno3;
+
+        double firstCost = firstPizza.costOfPie;
+        double secondCost = secondPizza.costOfPie;
+        double thirdCost = thirdPizza.costOfPie;
+        double firstRadius = firstPizza.intRadius;
+        double secondRadius = secondPizza.intRadius;
+        double thirdRadius = thirdPizza.intRadius;
+
+        self.labelTwo.text = [NSString stringWithFormat:@"$%0.2f", firstCost];
+        self.labelThree.text = [firstPizza pricePerInch:firstRadius andCost:firstCost];
+
+        self.labelFive.text = [NSString stringWithFormat:@"$%0.2f", secondCost];
+        self.labelSix.text = [secondPizza pricePerInch:secondRadius andCost:secondCost];
+        double quotient = [secondPizza percentLgOverSmDigit:firstCost andTwo:secondCost];
+        self.labelSeven.text = [NSString stringWithFormat:@"%0.1f%% > sm", quotient * 100];
+
+        self.labelNine.text = [NSString stringWithFormat:@"$%0.2f", thirdCost];
+        self.labelTen.text = [thirdPizza pricePerInch:thirdRadius andCost:thirdCost];
+        double quotient1 = [thirdPizza percentLgOverSmDigit:secondCost andTwo:thirdCost];
+        double quotient2 = [thirdPizza percentLgOverSmDigit:firstCost andTwo:thirdCost];
+        self.labelEleven.text = [NSString stringWithFormat:@"%0.1f%% > med", quotient1 * 100];
+        self.labelTwelve.text = [NSString stringWithFormat:@"%0.1f%% > sm", quotient2 * 100];
+
+    } else if ([self.pizzaPlace.name containsString:@"Pizano's"] || [self.pizzaPlace.name containsString:@"Pizzano's"]) {
+        self.imageView.image = [UIImage imageNamed:@"pizanosImage"];
+        Pizzeria *firstPizza = pizano1;
+        Pizzeria *secondPizza = pizano2;
+        Pizzeria *thirdPizza = pizano3;
+
+        double firstCost = firstPizza.costOfPie;
+        double secondCost = secondPizza.costOfPie;
+        double thirdCost = thirdPizza.costOfPie;
+        double firstRadius = firstPizza.intRadius;
+        double secondRadius = secondPizza.intRadius;
+        double thirdRadius = thirdPizza.intRadius;
+
+        self.labelTwo.text = [NSString stringWithFormat:@"$%0.2f", firstCost];
+        self.labelThree.text = [firstPizza pricePerInch:firstRadius andCost:firstCost];
+
+        self.labelFive.text = [NSString stringWithFormat:@"$%0.2f", secondCost];
+        self.labelSix.text = [secondPizza pricePerInch:secondRadius andCost:secondCost];
+        double quotient = [secondPizza percentLgOverSmDigit:firstCost andTwo:secondCost];
+        self.labelSeven.text = [NSString stringWithFormat:@"%0.1f%% > sm", quotient * 100];
+
+        self.labelNine.text = [NSString stringWithFormat:@"$%0.2f", thirdCost];
+        self.labelTen.text = [thirdPizza pricePerInch:thirdRadius andCost:thirdCost];
+        double quotient1 = [thirdPizza percentLgOverSmDigit:secondCost andTwo:thirdCost];
+        double quotient2 = [thirdPizza percentLgOverSmDigit:firstCost andTwo:thirdCost];
+        self.labelEleven.text = [NSString stringWithFormat:@"%0.1f%% > med", quotient1 * 100];
+        self.labelTwelve.text = [NSString stringWithFormat:@"%0.1f%% > sm", quotient2 * 100];
+
+
+    } else if ([self.pizzaPlace.name containsString:@"My Pi"]) {
+        self.imageView.image = [UIImage imageNamed:@"myPiImage"];
+        Pizzeria *firstPizza = myPi1;
+        Pizzeria *secondPizza = myPi2;
+        Pizzeria *thirdPizza = myPi3;
+
+        double firstCost = firstPizza.costOfPie;
+        double secondCost = secondPizza.costOfPie;
+        double thirdCost = thirdPizza.costOfPie;
+        double firstRadius = firstPizza.intRadius;
+        double secondRadius = secondPizza.intRadius;
+        double thirdRadius = thirdPizza.intRadius;
+
+        self.labelTwo.text = [NSString stringWithFormat:@"$%0.2f", firstCost];
+        self.labelThree.text = [firstPizza pricePerInch:firstRadius andCost:firstCost];
+
+        self.labelFive.text = [NSString stringWithFormat:@"$%0.2f", secondCost];
+        self.labelSix.text = [secondPizza pricePerInch:secondRadius andCost:secondCost];
+        double quotient = [secondPizza percentLgOverSmDigit:firstCost andTwo:secondCost];
+        self.labelSeven.text = [NSString stringWithFormat:@"%0.1f%% > sm", quotient * 100];
+
+        self.labelNine.text = [NSString stringWithFormat:@"$%0.2f", thirdCost];
+        self.labelTen.text = [thirdPizza pricePerInch:thirdRadius andCost:thirdCost];
+        double quotient1 = [thirdPizza percentLgOverSmDigit:secondCost andTwo:thirdCost];
+        double quotient2 = [thirdPizza percentLgOverSmDigit:firstCost andTwo:thirdCost];
+        self.labelEleven.text = [NSString stringWithFormat:@"%0.1f%% > med", quotient1 * 100];
+        self.labelTwelve.text = [NSString stringWithFormat:@"%0.1f%% > sm", quotient2 * 100];
+
+    } else if ([self.pizzaPlace.name containsString:@"Pequod's"]) {
+        self.imageView.image = [UIImage imageNamed:@"pequodsImage"];
+        Pizzeria *firstPizza = pequ1;
+        Pizzeria *secondPizza = pequ2;
+        Pizzeria *thirdPizza = pequ3;
+
+        double firstCost = firstPizza.costOfPie;
+        double secondCost = secondPizza.costOfPie;
+        double thirdCost = thirdPizza.costOfPie;
+        double firstRadius = firstPizza.intRadius;
+        double secondRadius = secondPizza.intRadius;
+        double thirdRadius = thirdPizza.intRadius;
+
+        self.labelTwo.text = [NSString stringWithFormat:@"$%0.2f", firstCost];
+        self.labelThree.text = [firstPizza pricePerInch:firstRadius andCost:firstCost];
+
+        self.labelFive.text = [NSString stringWithFormat:@"$%0.2f", secondCost];
+        self.labelSix.text = [secondPizza pricePerInch:secondRadius andCost:secondCost];
+        double quotient = [secondPizza percentLgOverSmDigit:firstCost andTwo:secondCost];
+        self.labelSeven.text = [NSString stringWithFormat:@"%0.1f%% > sm", quotient * 100];
+
+        self.labelNine.text = [NSString stringWithFormat:@"$%0.2f", thirdCost];
+        self.labelTen.text = [thirdPizza pricePerInch:thirdRadius andCost:thirdCost];
+        double quotient1 = [thirdPizza percentLgOverSmDigit:secondCost andTwo:thirdCost];
+        double quotient2 = [thirdPizza percentLgOverSmDigit:firstCost andTwo:thirdCost];
+        self.labelEleven.text = [NSString stringWithFormat:@"%0.1f%% > med", quotient1 * 100];
+        self.labelTwelve.text = [NSString stringWithFormat:@"%0.1f%% > sm", quotient2 * 100];
+
+    } else if ([self.pizzaPlace.name containsString:@"FloSantos"]) {
         self.imageView.image = [UIImage imageNamed:@"floSantosImage"];
         Pizzeria *firstPizza = flo1;
         Pizzeria *secondPizza = flo2;
@@ -182,7 +742,6 @@
         double firstCost = firstPizza.costOfPie;
         double secondCost = secondPizza.costOfPie;
         double thirdCost = thirdPizza.costOfPie;
-
         double firstRadius = firstPizza.intRadius;
         double secondRadius = secondPizza.intRadius;
         double thirdRadius = thirdPizza.intRadius;
@@ -203,7 +762,7 @@
         self.labelTwelve.text = [NSString stringWithFormat:@"%0.1f%% > sm", quotient2 * 100];
 
     } else if ([self.pizzaPlace.name containsString:@"Toppers"]) {
-        self.imageView.image = [UIImage imageNamed:@"craftImage"];
+        self.imageView.image = [UIImage imageNamed:@"toppersImage"];
         Pizzeria *firstPizza = topp1;
         Pizzeria *secondPizza = topp2;
         Pizzeria *thirdPizza = topp3;
@@ -231,7 +790,7 @@
         self.labelEleven.text = [NSString stringWithFormat:@"%0.1f%% > med", quotient1 * 100];
         self.labelTwelve.text = [NSString stringWithFormat:@"%0.1f%% > sm", quotient2 * 100];
 
-    }else if ([self.pizzaPlace.name containsString:@"Craft"]) {
+    } else if ([self.pizzaPlace.name containsString:@"Craft"]) {
      self.imageView.image = [UIImage imageNamed:@"craftImage"];
      Pizzeria *firstPizza = craft1;
      Pizzeria *secondPizza = craft2;
@@ -257,7 +816,7 @@
 //    self.labelTwelve.text = [NSString stringWithFormat:@"%0.1f%% > sm", quotient2 * 100];
 
 
- }else if ([self.pizzaPlace.name containsString:@"Santullo's"]) {
+ } else if ([self.pizzaPlace.name containsString:@"Santullo's"]) {
         self.imageView.image = [UIImage imageNamed:@"floSantosImage"];
         self.labelTwo.text = [NSString stringWithFormat:@"$%0.2f", santu1.costOfPie];
         self.labelThree.text = [santu1 pricePerInch:santu1.intRadius andCost:santu1.costOfPie];
@@ -265,21 +824,19 @@
 }  else if ([self.pizzaPlace.name containsString:@"Dimo's"]) {
     self.imageView.image = [UIImage imageNamed:@"dimosImage"];
     self.labelTwo.text = [NSString stringWithFormat:@"$%0.2f", dimos1.costOfPie];
-    self.labelThree.text = [dimos1 pricePerInch:lou1.intRadius andCost:dimos1.costOfPie];
+    self.labelThree.text = [santu1 pricePerInch:santu1.intRadius andCost:dimos1.costOfPie];
 
     self.labelFive.text = [NSString stringWithFormat:@"$%0.2f", dimos2.costOfPie];
-    self.labelSix.text = [dimos2 pricePerInch:dimos2.intRadius andCost:dimos2.costOfPie];
-    double quotient = [dimos2 percentLgOverSmDigit:dimos1.costOfPie andTwo:dimos2.costOfPie];
+    self.labelSix.text = [santu1 pricePerInch:santu1.intRadius andCost:santu1.costOfPie];
+    double quotient = [santu1 percentLgOverSmDigit:santu1.costOfPie andTwo:santu1.costOfPie];
     self.labelSeven.text = [NSString stringWithFormat:@"%0.1f%% > sm", quotient * 100];
 
 } else if ([self.pizzaPlace.name containsString:@"Quartino"]) {
-
     self.imageView.image = [UIImage imageNamed:@"quartinoImage"];
     self.labelTwo.text = [NSString stringWithFormat:@"$%0.2f", quar1.costOfPie];
     self.labelThree.text = [quar1 pricePerInch:quar1.intRadius andCost:quar1.costOfPie];
 
     }  else if ([self.pizzaPlace.name containsString:@"Lou"]) {
-
         self.imageView.image = [UIImage imageNamed:@"slide-pull-1"];
         self.labelTwo.text = [NSString stringWithFormat:@"$%0.2f", lou1.costOfPie];
         self.labelThree.text = [lou1 pricePerInch:lou1.intRadius andCost:lou1.costOfPie];
@@ -300,7 +857,7 @@
 
         self.imageView.image = [UIImage imageNamed:@"dominosImage"];
         self.labelTwo.text = [NSString stringWithFormat:@"$%0.2f", dom1.costOfPie];
-        self.labelThree.text = [dom1 pricePerInch:lou1.intRadius andCost:dom1.costOfPie];
+        self.labelThree.text = [dom1 pricePerInch:dom1.intRadius andCost:dom1.costOfPie];
 
         self.labelFive.text = [NSString stringWithFormat:@"$%0.2f", dom2.costOfPie];
         self.labelSix.text = [dom2 pricePerInch:dom2.intRadius andCost:dom2.costOfPie];
@@ -332,7 +889,7 @@
         self.labelEleven.text = [NSString stringWithFormat:@"%0.1f%% > med", quotient1 * 100];
         self.labelTwelve.text = [NSString stringWithFormat:@"%0.1f%% > sm", quotient2 * 100];
 
-    }else if([self.pizzaPlace.address containsString:@"500 LaSalle"])   {
+    }else if([self.pizzaPlace.address containsString:@"500 LaSalle"] || [self.pizzaPlace.name containsString:@"Bravo Restaurants"])   {
         self.imageView.image = [UIImage imageNamed:@"ginosImage"];
         self.labelTwo.text = [NSString stringWithFormat:@"$%0.2f", gino1.costOfPie];
         self.labelThree.text = [gino1 pricePerInch:gior1.intRadius andCost:gior1.costOfPie];
@@ -366,7 +923,7 @@
         self.labelEleven.text = [NSString stringWithFormat:@"%0.1f%% > med", quotient1 * 100];
         self.labelTwelve.text = [NSString stringWithFormat:@"%0.1f%% > sm", quotient2 * 100];
 
-    } else{
+    } else {
 
         UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"No Information" message:@"PizzaPi is working hard to add this Pizzeria" preferredStyle:UIAlertControllerStyleAlert];
 
@@ -406,27 +963,25 @@
         default: break;
     }
 
+
     if ((hours >= 0) && (hours < 12)) {
         // Morning...
         // Display normal sun icon.
         NSLog(@"Morning");
         self.backgorundImage.image = [UIImage imageNamed:@"large_chicago_on..ect_day"];
-    }
 
-    else if ((hours >= 12) && (hours < eveningHour)) {
+    }    else if ((hours >= 12) && (hours < eveningHour)) {
         // Afternoon...
         // Display normal sun icon.
         NSLog(@"Afternoon");
         self.backgorundImage.image = [UIImage imageNamed:@"Chicago_Theater_-_day"];
-    }
-    
-    else if ((hours >= eveningHour) && (hours <= 24)) {
+
+    }   else if ((hours >= eveningHour) && (hours <= 24)) {
         // Evening/Night...
-        // Display moon icon.
         NSLog(@"Evening");
         self.backgorundImage.image = [UIImage imageNamed:@"Dark-Chicago"];
         self.midView.backgroundColor = [UIColor blackColor];
-        self.midView.alpha = .5;
+        self.midView.alpha = .8;
 
         UIFont *font = [UIFont boldSystemFontOfSize:12.0f];
         NSDictionary *attributes = [NSDictionary dictionaryWithObject:font
@@ -449,12 +1004,14 @@
         self.labelEleven.textColor = [UIColor whiteColor];
         self.labelTwelve.textColor = [UIColor whiteColor];
 
+        }
     }
-}
 
 
 
 #pragma mark -- Segue Methods
+
+
 
 -(BOOL)shouldPerformSegueWithIdentifier:(NSString *)identifier sender:(id)sender{
     if (self.pizzaPlace.url) {

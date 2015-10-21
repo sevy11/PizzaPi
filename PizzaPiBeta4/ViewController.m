@@ -11,16 +11,19 @@
 #import <CoreLocation/CoreLocation.h>
 #import "Pizzeria.h"
 #import "DetailViewController.h"
-#import <AddressBookUI/AddressBookUI.h>
+#import <Contacts/Contacts.h>
 #import "Color.h"
+#import <MapKit/MKAnnotation.h>
+
 
 
 @interface ViewController () <CLLocationManagerDelegate, UITableViewDataSource, UITableViewDelegate, MKMapViewDelegate>
 
 @property CLLocationManager *locationManager;
 @property CLLocation *currentLocation;
-@property (weak, nonatomic) IBOutlet MKMapView *mapView;
-@property (weak, nonatomic) IBOutlet UITableView *tableView;
+
+@property (strong, nonatomic) IBOutlet MKMapView *mapView;
+@property (strong, nonatomic) IBOutlet UITableView *tableView;
 
 @property NSArray *pizzaPlacesArray;
 
@@ -31,6 +34,9 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
 
+    self.pizzaPlacesArray = [NSArray new];
+    self.tableView.delegate = self;
+    self.mapView.delegate = self;
     self.automaticallyAdjustsScrollViewInsets = NO;
 
     self.navigationController.navigationBar.tintColor = [UIColor blackColor];
@@ -40,29 +46,54 @@
     //set current location
     self.locationManager = [CLLocationManager new];
     self.locationManager.delegate = self;
-    
-    [self updateCurrentLocation];
-    self.tableView.delegate = self;
-    self.mapView.delegate = self;
 
+    if ([self.locationManager respondsToSelector:@selector(requestWhenInUseAuthorization)]) {
+        [self.locationManager requestWhenInUseAuthorization];
+    }
+
+    [self.locationManager startUpdatingLocation];
+    [self.locationManager requestWhenInUseAuthorization];
+    [self.locationManager requestAlwaysAuthorization];
+    _locationManager.distanceFilter = kCLDistanceFilterNone;
+    _locationManager.desiredAccuracy = kCLLocationAccuracyHundredMeters;
+    self.locationManager.allowsBackgroundLocationUpdates = YES;
+
+    NSLog(@"latitude %f & longitude: %f", self.locationManager.location.coordinate.latitude, self.locationManager.location.coordinate.latitude);
+
+    
+
+/*old
+    [self updateCurrentLocation];
+    [self.locationManager setDesiredAccuracy:kCLLocationAccuracyBest];
+    if ([[[UIDevice currentDevice] systemVersion] floatValue] >= 8) {
+        [self.locationManager requestAlwaysAuthorization];
+        self.mapView.showsUserLocation = YES;
+    }
+    if ([[[UIDevice currentDevice] systemVersion] floatValue] >= 9) {
+        self.locationManager.allowsBackgroundLocationUpdates = YES;
+        self.mapView.showsUserLocation = YES;
+    }
+
+    [self.locationManager startUpdatingLocation];
+*/
 }
 
     //making a custom method to grab the users current location
--(void)updateCurrentLocation
-{
+//-(void)updateCurrentLocation
+//{
     //calling the method- requestAlwaysAuthorization on the locationManager
-    [self.locationManager requestWhenInUseAuthorization];
-    self.mapView.showsUserLocation = YES;
-    [self.locationManager startUpdatingLocation];
-}
+        //    [self.locationManager requestAlwaysAuthorization];
+        //    self.mapView.showsUserLocation = YES;
+        //    [self.locationManager startUpdatingLocation];
+        //}
 
-
+//the other pins besides current location
 -(MKAnnotationView *)mapView:(MKMapView *)mapView viewForAnnotation:(id<MKAnnotation>)annotation    {
     //so this will run for everything except the current location
     if (![annotation isEqual:mapView.userLocation]) {
 
         MKPinAnnotationView *pin = [[MKPinAnnotationView alloc]initWithAnnotation:annotation reuseIdentifier:nil];
-        pin.pinColor = MKPinAnnotationColorPurple;
+        pin.pinTintColor = [UIColor purpleColor];
         pin.canShowCallout = YES;
         pin.rightCalloutAccessoryView = [UIButton buttonWithType:UIButtonTypeDetailDisclosure];
         return pin;
@@ -121,7 +152,7 @@
             NSDictionary *dict = pizza.placemark.addressDictionary;
             NSString *stringy = [dict objectForKey:@"Street"];
             pizza.address = stringy;
-            NSLog(@"name: %@", pizza.name);
+            //NSLog(@"name: %@", pizza.name);
 
             pizza.phoneNumber = pizza.mapItem.phoneNumber;
             pizza.url = pizza.mapItem.url;
@@ -174,7 +205,6 @@
             [self geocodeLocation:pizza9.address];
         }
 
-
         [self.tableView reloadData];
     }];
 
@@ -185,7 +215,7 @@
 -(void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray *)locations
 {
     self.currentLocation = locations.firstObject;
-    NSLog(@"%@", self.currentLocation);
+    NSLog(@"locaiton: %@", self.currentLocation);
     [self.locationManager stopUpdatingLocation];
 
     //search for Pizerias
@@ -193,15 +223,19 @@
 }
 
 -(void)mapView:(MKMapView *)mapView didUpdateUserLocation:(MKUserLocation *)userLocation{
+
     MKCoordinateRegion region;
     region.center = mapView.userLocation.coordinate;
-    region.span.latitudeDelta = 0.12;
-    region.span.longitudeDelta = 0.12;
+    NSLog(@"in method locale: %@", mapView.userLocation);
+    region.span.latitudeDelta = 0.012;
+    region.span.longitudeDelta = 0.012;
+
 
     [mapView setRegion:region animated:YES];
 }
 
 
+#pragma mark - tableView delegates
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     return self.pizzaPlacesArray.count;
@@ -217,11 +251,13 @@
     cell.detailTextLabel.text = pizza.address;
 
     return cell;
-
 }
+
+
 
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
+
     DetailViewController *detailVC = segue.destinationViewController;
     detailVC.pizzaPlace = [self.pizzaPlacesArray objectAtIndex:self.tableView.indexPathForSelectedRow.row];
     detailVC.currentLocation = self.currentLocation;
