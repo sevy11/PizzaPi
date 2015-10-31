@@ -9,4 +9,4 @@ Pizzerias and exactly how to get there. Also call or visit the restaurant's webs
 ![Image](http://github.com/sevy11/PizzaPi/blob/master/PizzaPiBeta4/Images.xcassets/Screen Shot 2015-10-19 at 8.26.43 PM.imageset/Screen Shot 2015-10-19 at 8.26.43 PM.png)
 
 
-![Image](sevy11.github.com/PizzaPi/blob/master/PizzaPiBeta4/Images.xcassets/Screen Shot 2015-10-19 at 8.26.43 PM.imageset/Screen Shot 2015-10-19 at 8.26.43 PM.png)
+![Image](sevy11.github.com/PizzaPi/PizzaPiBeta4/Images.xcassets/Screen Shot 2015-10-19 at 8.26.43 PM.imageset/Screen Shot 2015-10-19 at 8.26.43 PM.png)
