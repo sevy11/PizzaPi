@@ -1048,7 +1048,7 @@
 
 
 
-#pragma mark -- helper methods
+#pragma mark -- helper methods walking, biking, driving
 
 -(void)getPathDirectionsWalking:(CLLocationCoordinate2D)source withDestination:(CLLocationCoordinate2D)destination {
     //source and destination objects init
@@ -1079,7 +1079,6 @@
 }
 
 -(void)getPathDirectionsBiking:(CLLocationCoordinate2D)source withDestination:(CLLocationCoordinate2D)destination {
-    //source and destination objects init
     MKPlacemark *placemarkSource = [[MKPlacemark alloc]initWithCoordinate:source addressDictionary:nil];
     MKMapItem *mapItemSource = [[MKMapItem alloc]initWithPlacemark:placemarkSource];
     MKPlacemark *placemarkDestination = [[MKPlacemark alloc]initWithCoordinate:destination addressDictionary:nil];
@@ -1108,7 +1107,6 @@
 
 
 -(void)getPathDirectionsDriving:(CLLocationCoordinate2D)source withDestination:(CLLocationCoordinate2D)destination {
-    //source and destination objects init
     MKPlacemark *placemarkSource = [[MKPlacemark alloc]initWithCoordinate:source addressDictionary:nil];
     MKMapItem *mapItemSource = [[MKMapItem alloc]initWithPlacemark:placemarkSource];
     MKPlacemark *placemarkDestination = [[MKPlacemark alloc]initWithCoordinate:destination addressDictionary:nil];

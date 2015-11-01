@@ -59,33 +59,8 @@
     self.locationManager.allowsBackgroundLocationUpdates = YES;
 
     NSLog(@"latitude %f & longitude: %f", self.locationManager.location.coordinate.latitude, self.locationManager.location.coordinate.latitude);
-
-    
-
-/*old
-    [self updateCurrentLocation];
-    [self.locationManager setDesiredAccuracy:kCLLocationAccuracyBest];
-    if ([[[UIDevice currentDevice] systemVersion] floatValue] >= 8) {
-        [self.locationManager requestAlwaysAuthorization];
-        self.mapView.showsUserLocation = YES;
-    }
-    if ([[[UIDevice currentDevice] systemVersion] floatValue] >= 9) {
-        self.locationManager.allowsBackgroundLocationUpdates = YES;
-        self.mapView.showsUserLocation = YES;
-    }
-
-    [self.locationManager startUpdatingLocation];
-*/
 }
 
-    //making a custom method to grab the users current location
-//-(void)updateCurrentLocation
-//{
-    //calling the method- requestAlwaysAuthorization on the locationManager
-        //    [self.locationManager requestAlwaysAuthorization];
-        //    self.mapView.showsUserLocation = YES;
-        //    [self.locationManager startUpdatingLocation];
-        //}
 
 //the other pins besides current location
 -(MKAnnotationView *)mapView:(MKMapView *)mapView viewForAnnotation:(id<MKAnnotation>)annotation    {
@@ -115,7 +90,6 @@
             annotation.coordinate = place.location.coordinate;
 
             annotation.title = place.name;
-
 
             [self.mapView addAnnotation:annotation];
         }
